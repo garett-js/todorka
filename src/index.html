@@ -47,32 +47,50 @@
             <section class="app-workspace">
 
                 <div id="pomidorka" class="inner-section">
-                    <div id="pomidorka-timer" class="pomidorka-timer">
-                        <span class="time">0:05</span>
-                        <p class="title">Курсы по JS ES6</p>
-                        <button class="btn btn-start">Поехали</button>
-                        <button class="btn btn-pause hide">Пауза</button>
-                        <button class="btn btn-end">Хватит</button>
+                    <div class="pomidorka-left">
+                        <div id="pomidorka-timer" class="pomidorka-timer">
+                            <span class="time">0:05</span>
+                            <p class="title">Курсы по JS ES6</p>
+                            <button class="btn btn-start">Поехали</button>
+                            <button class="btn btn-pause hide">Пауза</button>
+                            <button class="btn btn-end">Хватит</button>
+                        </div>
+                        <div class="pomidorka-config">
+                            <h2 class="hide">Настройки</h2>
+                            <form action="post" name="config">
+                                <div class="form-field">
+                                    <label for="full-time">Время помидорки</label>
+                                    <input type="text" id="full-time" name="fulltime" value="25">
+                                </div>
+                                <div class="form-field">
+                                    <label for="break-time">Время перерыва</label>
+                                    <input type="text" id="break-time" name="break-time" value="5">
+                                </div>
+                                <div class="form-field">
+                                    <label for="long-break-time">Время большого перерыва</label>
+                                    <input type="text" id="long-break-time" name="long-break-time" value="15">
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="pomidorka-config">
-                        <h2 class="hide">Настройки</h2>
 
-                        <form action="post" name="config">
-                            <div class="form-field">
-                                <label for="full-time">Время помидорки</label>
-                                <input type="text" id="full-time" name="fulltime" value="25">
-                            </div>
-                            <div class="form-field">
-                                <label for="break-time">Время перерыва</label>
-                                <input type="text" id="break-time" name="break-time" value="5">
-                            </div>
-                            <div class="form-field">
-                                <label for="long-break-time">Время большого перерыва</label>
-                                <input type="text" id="long-break-time" name="long-break-time" value="15">
-                            </div>
-                        </form>
+                    <div id="pomidorka-list" class="pomidorka-list">
+                        <ul><li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, reprehenderit.</li>
+                        <li>Expedita officia explicabo nobis dolor nemo aliquid natus, debitis rem.</li>
+                        <li>Asperiores ipsum beatae culpa eligendi perferendis accusantium porro natus quisquam.</li>
+                        <li>Facilis temporibus, fugit voluptas architecto voluptatem hic deleniti eum sit.</li>
+                        <li>Necessitatibus, culpa corrupti optio unde atque quasi ducimus voluptates magnam.</li>
+                        <li>Earum animi numquam perspiciatis totam mollitia tenetur quia nemo? Eligendi.</li>
+                        <li>Laudantium culpa eveniet vitae distinctio illum alias recusandae commodi dolore.</li>
+                        <li>Aliquid repellat consequuntur veniam dolores! Sunt in vel non excepturi?</li>
+                        <li>Quisquam temporibus libero ratione aliquid laborum nemo debitis unde eos.</li>
+                        <li>Expedita ullam, amet iure totam esse voluptate temporibus eos vero.</li>
+                        <li>Ea quisquam, doloremque autem repellendus sit voluptatem ratione cupiditate aut.</li>
+                        <li>Accusamus hic pariatur culpa, error consectetur accusantium eos beatae maiores.</li>
+                        <li>Necessitatibus quisquam nesciunt quidem porro fuga possimus laborum cum laudantium!</li>
+                        <li>Rem ab enim error veritatis provident ad minus assumenda voluptatum.</li>
+                        <li>Error adipisci architecto distinctio blanditiis repudiandae exercitationem ipsa ullam ratione?</li></ul>
                     </div>
-                    <div id="pomidorka-list" class="pomidorka-list">Список</div>
                 </div>
 
                 <div id="plans" class="inner-section hide">Список Планов</div>

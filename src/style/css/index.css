@@ -106,16 +106,14 @@ section.app-workspace {
 }
 
 .inner-section {
-    border: 2px solid #E8485A;
+    /* border: 2px solid #E8485A; */
     position: relative;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .pomidorka-timer {
-    border: 2px solid #2D9CDB;
-    flex: 1 0 auto;
+    /* border: 2px solid #2D9CDB; */
+    /* flex: 1 0 auto; */
     padding: 20px;
     background-color: #fff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -168,11 +166,22 @@ section.app-workspace {
     background-color: #313740;
 }
 
+.pomidorka-left {
+    flex: 0 0 auto;
+    margin-right: 40px;
+}
 .pomidorka-list {
-    border: 2px solid #2D9CDB;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
     flex: 1 0 auto;
-    /*width: 450px;
-    height: 250px; */
+}
+.pomidorka-config {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 
@@ -198,6 +207,26 @@ footer {
     }
     main {
         flex-direction: column;
+    }
+}
+
+@media all and (max-width: 1444px) {
+    .inner-section {
+        flex-direction: column;
+    }
+    .pomidorka-left {
+        display: flex;
+        flex-direction: row;
+        margin-right: 0;
+        margin-bottom:  40px;
+    }
+    .pomidorka-timer {
+        flex: 1 0 auto;
+        margin-right: 40px;
+    }
+    .pomidorka-config {
+        flex: 1 0 auto;
+        margin-top: 0;
     }
 }
 
