@@ -1,0 +1,59 @@
+// Все конфиги смотреть в webpack.config.js и package.json
+
+1. Создать проект папку
+
+2. В ней выполнить npm init (создает pacake.json)
+
+3. Установить webpack в проект
+    npm install --save-dev webpack webpack-cli
+
+4. Структура проекта
+    [dist] --> здесь готовые скрипты сделанные вебпаком
+    [src] --> здесь исходники с которыми работаем
+    package.json 
+    webpack.config.js
+
+5. Установить плагин для HTML https://webpack.js.org/plugins/html-webpack-plugin который будет прицеплять скрипты и минимизироваться 
+    npm install --save-dev html-webpack-plugin
+
+6. Установить сторонний плагин, например jQuery (--save т.е. будет доступно для продакшина)
+    npm install --save jquery
+
+// Чтобы дать webpack дополнительный функционал (файлы расширений кроме .js), есть такой подход Loaders
+
+7. Установить loader https://webpack.js.org/loaders/style-loader/ для загрузки стилей
+   npm install style-loader --save-dev 
+
+8. Установить loader например для css https://webpack.js.org/loaders/css-loader/
+    npm install --save-dev css-loader
+
+9. Если нужно чтобы стили грузились как файл в документе то нужно поставить плагин https://webpack.js.org/plugins/mini-css-extract-plugin/
+    npm install --save-dev mini-css-extract-plugin
+
+10. Чтобы минимизировать CSS файл поставить плагин  https://github.com/NMFR/optimize-css-assets-webpack-plugin
+    npm install --save-dev optimize-css-assets-webpack-plugin
+
+11. Но теперь нужно и поставить плагин, чтобы минимизировать JS, например https://webpack.js.org/plugins/uglifyjs-webpack-plugin/ (только ES5 без бабел не будет работать)
+    npm install uglifyjs-webpack-plugin --save-dev
+
+12. Или использовать const TerserJSPlugin = require("terser-webpack-plugin") там есть поддержка ES6+
+
+13. Для удобства можно установить webpack-dev-server
+    npm install --save-dev webpack-dev-server
+
+14. Самый полезный сахар, установка бабеля (Babel) https://babeljs.io/docs/en/usage (к конфиге как подключать и как написать loader)
+    npm install --save-dev @babel/core @babel/cli @babel/preset-env
+    npm install --save @babel/polyfill
+
+15. Но теперь нужно и установить loader )))) https://webpack.js.org/loaders/babel-loader/
+    npm install --save-dev babel-loader
+
+16. Создать в корне проекта файл .babelrc конфиг для бабеля. Подробней тык https://babeljs.io/docs/en/configuration#babelrc
+
+17. Если в проекете LESS установка https://webpack.js.org/loaders/less-loader/ + сам less
+    npm install less less-loader --save-dev
+
+18. Если в проекете используется SASS https://webpack.js.org/loaders/sass-loader/ + сам sass
+    npm install sass-loader node-sass --save-dev
+
+19. Если в проекете используется PUG

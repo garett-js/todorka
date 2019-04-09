@@ -1,0 +1,14 @@
+// Например поддержка последних 5 версий браузеров
+{
+    "presets": [
+        ["@babel/preset-env", {
+            "targets": [
+                "last 5 versions"
+            ]
+        }]
+    ],
+    "plugins": [
+        ["@babel/plugin-proposal-optional-chaining"],
+        ["@babel/plugin-proposal-nullish-coalescing-operator"]
+    ]
+}
