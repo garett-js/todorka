@@ -1,146 +1,124 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: darkgrey;
     font-family: Arial, Helvetica, sans-serif;
 }
-
-.container {
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: #F0F0F0;
+}
+header {
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  /* @media (min-width: 576px) {
-    .container {
-      width: 540px;
-      max-width: 100%;
-    }
-  }
-  @media (min-width: 768px) {
-    .container {
-      width: 720px;
-      max-width: 100%;
-    }
-  }
-  @media (min-width: 992px) {
-    .container {
-      width: 960px;
-      max-width: 100%;
-    }
-  }
-  @media (min-width: 1440px) {
-    .container {
-      width: 1440px;
-      max-width: 100%;
-    }
-  } */
-
-.page-header {
-    height: 70px;
+    flex: 0 0 80px;
+    display: flex;
     background-color: #fff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    z-index: 1;
 }
-.page-header .logo {
-    background: #E8485A;
-    width: 90px;
-    height: 70px;
+header .header-logo {
+    background-color: #E8485A;
+    flex: 0 0 80px;
     color: #fff;
-    font-weight: bold;
     text-align: center;
+    padding-top: 30px;
+}
+header .header-timer {
+    flex: 1 0 auto;
+    align-self: center;
+
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 40px;
+}
+header .header-user {
+    flex: 0 0 auto;
+    align-self: center;
+    padding-right: 40px;
+}
+.header-user .user-info {
+    position: absolute;
+    top: 5px;
+    right: 20px;
 }
 
 main {
     display: flex;
-    height: 90vh;;
+    flex: 1 0 auto;
 }
 
-main .menu {
+.app-menu {
+    flex: 0 0 80px;
     position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     background: #313740;
-    width: 90px;
-    /* display: flex;
-    flex-direction: column;
-    font-size: 14px; */
-    padding-top: 40px;
-}
 
-.menu ul {
+    display: flex;
+    flex-direction: column;
+
+}
+.app-menu ul.top,
+.app-menu ul.bottom  {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    width: 90px;
-    font-size: 14px;
+    font-size: 12px;
 
     color: #fff;
     font-weight: bold;
     text-decoration: none;
 }
-.menu ul>li {
-    height: 90px;
+.app-menu ul.top > li,
+.app-menu ul.bottom > li {
+    flex: 0 0 80px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Центрирование по горизонтали */
-    align-items: center;     /*Центрирование по вертикали */
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
-.menu ul>li:hover {
+.app-menu ul>li:hover {
     background-color: rgba(0, 0, 0, 0.30);
 }
 
-.menu-item {
-    flex: 0 0 90px;
-    width: 90px;
-    height: 90px;
+.app-menu ul.top {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Центрирование по горизонтали */
-    align-items: center;     /*Центрирование по вертикали */
+    flex: 0 0 auto;
 }
-.menu-item:hover {
-    background-color: rgba(0, 0, 0, 0.30);
-}
-
-.active {
-    background-color: #000;
+.app-menu .empty {
+    flex: 1 0 auto;
 }
 
-.menu a {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: none;
+.app-menu ul.bottom {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
 }
 
-main .workspace {
-    background-color: #F0F0F0;
-    width: 100%;
-    padding: 40px 50px;
+section.app-workspace {
+    padding: 40px;
+    flex: 1 0 auto;
+    box-sizing: border-box;
 }
 
 .inner-section {
-    border: 2px solid rgb(74, 225, 252);
+    border: 2px solid #E8485A;
+    position: relative;
     display: flex;
-    align-items: flex-start;
     flex-wrap: wrap;
-}
-
-.hide {
-    display: none;
+    justify-content: space-between;
 }
 
 .pomidorka-timer {
+    border: 2px solid #2D9CDB;
+    flex: 1 0 auto;
+    padding: 20px;
     background-color: #fff;
-    padding: 25px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-bottom: 25px;
-    width: 100%;
 
     text-align: center;
 }
@@ -148,6 +126,11 @@ main .workspace {
     font-size: 24px;
     line-height: 5px;
 }
+.time {
+    font-size: 72px;
+    font-weight: bold;
+}
+
 .btn {
     border: 0;
     color: #fff;
@@ -185,60 +168,43 @@ main .workspace {
     background-color: #313740;
 }
 
-
-.pomidorka-config {
-    background-color: #fff;
-    padding: 25px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    min-height: 120px;
-    width: 100%;
-}
-
 .pomidorka-list {
-    background-color: #fff;
-    padding: 25px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: 2px solid #2D9CDB;
+    flex: 1 0 auto;
+    /*width: 450px;
+    height: 250px; */
 }
 
-.left-timer-config {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+
+
+footer {
+    flex: 0 0 20px;
+    background-color:#2D9CDB;
 }
 
-.page-footer {
-    background-color: #2D9CDB;
+.hide {
+    display: none;
 }
 
-.time {
-    font-size: 72px;
-    font-weight: bold;
+@media all and (max-width: 600px) {
+    header { flex-direction: column; }
+    header .header-timer {
+        font-size: 24px;
+        padding-left: 0px;
+        align-self: center;
+    }
+    header .header-user {
+        align-self: center;
+    }
+    main {
+        flex-direction: column;
+    }
 }
-/* .menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.menu ul>li {
-    flex: 0 0 100px;
-    border: 2px solid #fff;
-}
-
-.menu li a {
-    color: #fff;
-    text-decoration: none;
-} */
-
 
 .for-anime {
     opacity:0; /*Элемент полностью прозрачный (невидимый)*/
-	transition: 1s; /*Скорость перехода состояния элемента*/
-	animation: show 2s 1; /* Указываем название анимации, её время и количество повторов*/
+    transition: 1s; /*Скорость перехода состояния элемента*/
+    animation: show 2s 1; /* Указываем название анимации, её время и количество повторов*/
     animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
     animation-delay: 0s; /* Задержка перед началом */
 }

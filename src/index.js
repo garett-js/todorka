@@ -5,7 +5,7 @@ import { PlansComponent }          from './js_components/plans.component'
 // section import style
 import './style/css/index.css'
 
-const nav = new NavigationComponent('main-menu')
+const nav = new NavigationComponent('app-menu')
 
 nav.registerTabs([
     {
