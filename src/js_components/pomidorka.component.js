@@ -1,4 +1,5 @@
 import { Component } from '../js_core/component'
+import { Validators } from '../js_core/validators'
 import { Form } from '../js_core/form'
 
 export class PomidorkaTimerComponent extends Component {
@@ -24,9 +25,29 @@ export class PomidorkaTimerComponent extends Component {
         this.$pauseTimer = this.$el.querySelector('.btn-pause')
         this.$stopTimer  = this.$el.querySelector('.btn-end')
 
-        this.$configForm = document.forms.config
-        this.$createForm = document.getElementById('pomidorkacreate')
-        Form.Create(this.$createForm)
+        this.$configFormElement = document.getElementById('pomidorka-config')
+        this.$createFormElement = document.getElementById('pomidorka-create')
+
+        this.formConfig = Form.Create(this.$configFormElement, {
+            fulltime: [Validators.required, Validators.maxLength(2), Validators.minLength(1)],
+            breaktime: [Validators.required],
+            longbreaktime: [Validators.required]
+        })
+        this.formCreate = Form.Create(this.$createFormElement, {
+            pomidorkatitle: [Validators.required]
+        })
+
+        this.$createFormElement.addEventListener('submit', (event) => {
+            event.preventDefault()
+
+            if (this.formCreate.isValid()) {
+                const formData = {
+                    ...this.formCreate.value()
+                }
+                console.log('FormCreate Data >', formData)
+
+            }
+        })
 
     }
 
@@ -43,39 +64,42 @@ export class PomidorkaTimerComponent extends Component {
         this.$pauseTimer.addEventListener('click', clickPauseHandler.bind(this))
         this.$stopTimer.addEventListener('click', clickStopHandler.bind(this))
 
-        this.$configForm.addEventListener('change', changeConfigFormHandler.bind(this))
-        this.$createForm.addEventListener('submit', submitCreateFormHandler.bind(this))
+        this.$configFormElement.addEventListener('change', changeConfigFormElementHandler.bind(this))
+        // this.$createFormElement.addEventListener('submit', submitCreateFormHandler.bind(this))
     }
 }
 
 // private
-function changeConfigFormHandler(event) {
+function changeConfigFormElementHandler(event) {
+    event.preventDefault()
 
-    if (event.target.value.length > 2 || event.target.value > 60) {
-        alert('Не больше 60 минут')
-        event.target.value = '25'
-    }
-    if (event.target.value != 0) {
-        if (!parseInt(event.target.value)) {
-            alert('Это что за дичь тут мне подсунули!?')
-            event.target.value = '25'
+        if (this.formConfig.isValid()) {
+            const formData = {
+                ...this.formConfig.value()
+            }
+            console.log('FormConfig Data >', formData)
+            this.$time.textContent = `${formData.fulltime}:00`
         }
-    }
-    if (event.target.value == 0) {
-        event.target.value = '25'
-    }
-    if (event.target.value < 0) {
-        alert('Это как так???')
-        event.target.value = '25'
-    }
 
-    this.pomidorkaTime = this.$configForm.elements.fulltime.value
-    this.pomidorkaBreak = this.$configForm.elements.breaktime.value
-    this.pomidorkaLongBreak = this.$configForm.elements.longbreaktime.value
+    // if (event.target.value.length > 2 || event.target.value > 60) {
+    //     alert('Не больше 60 минут')
+    //     event.target.value = '25'
+    // }
+    // if (event.target.value != 0) {
+    //     if (!parseInt(event.target.value)) {
+    //         alert('Это что за дичь тут мне подсунули!?')
+    //         event.target.value = '25'
+    //     }
+    // }
+    // if (event.target.value == 0) {
+    //     event.target.value = '25'
+    // }
+    // if (event.target.value < 0) {
+    //     alert('Это как так???')
+    //     event.target.value = '25'
+    // }
 
-    console.log(this.pomidorkaTime, this.pomidorkaBreak, this.pomidorkaLongBreak)
-
-    this.$time.textContent = `${this.pomidorkaTime}:00`
+    // this.$time.textContent = `${this.pomidorkaTime}:00`
 }
 function submitCreateFormHandler(event) {
 

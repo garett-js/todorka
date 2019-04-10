@@ -57,16 +57,16 @@
                         </div>
                         <div class="pomidorka-config">
                             <h2 class="hide">Настройки</h2>
-                            <form action="post" name="config">
-                                <div class="form-field">
+                            <form action="post" id="pomidorka-config">
+                                <div class="form-control">
                                     <label for="full-time">Время помидорки</label>
                                     <input type="text" id="full-time" name="fulltime" value="25">
                                 </div>
-                                <div class="form-field">
+                                <div class="form-control">
                                     <label for="break-time">Время перерыва</label>
                                     <input type="text" id="break-time" name="breaktime" value="5">
                                 </div>
-                                <div class="form-field">
+                                <div class="form-control">
                                     <label for="long-break-time">Время большого перерыва</label>
                                     <input type="text" id="long-break-time" name="longbreaktime" value="15">
                                 </div>
@@ -75,12 +75,12 @@
                     </div>
 
                     <div id="pomidorka-list" class="pomidorka-list">
-                        <form method="post" id="pomidorkacreate">
+                        <form method="post" id="pomidorka-create">
                             <h2 class="h4">Добавить помидорку</h2>
 
                             <div class="form-control">
                                 <label>Цель помидорки:</label>
-                                <input type="text" name="title" placeholder="Напишете помидорку">
+                                <input type="text" name="pomidorkatitle" placeholder="Напишете помидорку">
                             </div>
                             <button class="btn btn-start" type="submit">Тык</button>
 
