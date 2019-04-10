@@ -1,9 +1,9 @@
-import { Component } from "../js_core/component"
+import { Component } from '../js_core/component'
+import { Form } from '../js_core/form'
 
 export class PomidorkaTimerComponent extends Component {
     constructor(id) {
         super(id)
-        this.init()
     }
 
     static create(el) {
@@ -13,7 +13,6 @@ export class PomidorkaTimerComponent extends Component {
     init() {
         this.id_timer = null
 
-        this.$configForm = document.forms.config
         this.pomidorkaTime = '00:03'
         this.pomidorkaBreak = '5:00'
         this.pomidorkaLongBreak = '15:00'
@@ -24,6 +23,11 @@ export class PomidorkaTimerComponent extends Component {
         this.$startTimer = this.$el.querySelector('.btn-start')
         this.$pauseTimer = this.$el.querySelector('.btn-pause')
         this.$stopTimer  = this.$el.querySelector('.btn-end')
+
+        this.$configForm = document.forms.config
+        this.$createForm = document.getElementById('pomidorkacreate')
+        Form.Create(this.$createForm)
+
     }
 
     onShow() {
@@ -39,12 +43,13 @@ export class PomidorkaTimerComponent extends Component {
         this.$pauseTimer.addEventListener('click', clickPauseHandler.bind(this))
         this.$stopTimer.addEventListener('click', clickStopHandler.bind(this))
 
-        this.$configForm.addEventListener('change', changeConfigFormInput.bind(this))
+        this.$configForm.addEventListener('change', changeConfigFormHandler.bind(this))
+        this.$createForm.addEventListener('submit', submitCreateFormHandler.bind(this))
     }
 }
 
 // private
-function changeConfigFormInput(event) {
+function changeConfigFormHandler(event) {
 
     if (event.target.value.length > 2 || event.target.value > 60) {
         alert('Не больше 60 минут')
@@ -72,7 +77,9 @@ function changeConfigFormInput(event) {
 
     this.$time.textContent = `${this.pomidorkaTime}:00`
 }
+function submitCreateFormHandler(event) {
 
+}
 function clickStartHandler(event) {
     visibilityHandler(event.target, this.$pauseTimer)
     this.id_timer = setInterval(tickPomidorka.bind(this), 1000)
@@ -88,10 +95,7 @@ function clickStopHandler() {
     addValueToElement(`25:00`, this.$time)
     // $fulltime.removeAttribute("disabled")
 }
-
 function tickPomidorka() {
-    // console.log(this)
-
     let time_list = this.$time.innerHTML.split(':')
     let min = time_list[0]
     let sec = time_list[1]
@@ -113,7 +117,6 @@ function tickPomidorka() {
 
     addValueToElement(`${min}:${sec}`, this.$time)
 }
-
 function hideElement(el) {
     el.classList.add('hide')
 }
