@@ -62,6 +62,7 @@ export class Form {
 
 function setError($control, message) {
     clearError($control)
+    $control.value = ''
     const error = `<p class="validation-error">${message}</p>`
     $control.classList.add('invalid')
     $control.insertAdjacentHTML('afterend', error)
