@@ -1,6 +1,7 @@
 import { Component } from '../js_core/component'
 import { Validators } from '../js_core/validators'
 import { Form } from '../js_core/form'
+import '../js_core/libs'
 
 export class PomidorkaTimerComponent extends Component {
     constructor(id) {
@@ -25,6 +26,8 @@ export class PomidorkaTimerComponent extends Component {
         this.$pauseTimer = this.$el.querySelector('.btn-pause')
         this.$stopTimer  = this.$el.querySelector('.btn-end')
 
+        this.$pomidorkaList = document.getElementById('pomidorka-list')
+
         this.$configFormElement = document.getElementById('pomidorka-config')
         this.$createFormElement = document.getElementById('pomidorka-create')
 
@@ -36,19 +39,6 @@ export class PomidorkaTimerComponent extends Component {
         this.formCreate = Form.Create(this.$createFormElement, {
             pomidorkatitle: [Validators.required]
         })
-
-        this.$createFormElement.addEventListener('submit', (event) => {
-            event.preventDefault()
-
-            if (this.formCreate.isValid()) {
-                const formData = {
-                    ...this.formCreate.value()
-                }
-                console.log('FormCreate Data >', formData)
-
-            }
-        })
-
     }
 
     onShow() {
@@ -64,50 +54,44 @@ export class PomidorkaTimerComponent extends Component {
         this.$pauseTimer.addEventListener('click', clickPauseHandler.bind(this))
         this.$stopTimer.addEventListener('click', clickStopHandler.bind(this))
 
-        this.$configFormElement.addEventListener('change', changeConfigFormElementHandler.bind(this))
-        // this.$createFormElement.addEventListener('submit', submitCreateFormHandler.bind(this))
+        this.$configFormElement.addEventListener('change', configFormtHandler.bind(this))
+        this.$createFormElement.addEventListener('submit', createFormHandler.bind(this))
     }
 }
 
 // private
-function changeConfigFormElementHandler(event) {
+function createFormHandler(event) {
     event.preventDefault()
-
-        if (this.formConfig.isValid()) {
-            const formData = {
-                ...this.formConfig.value()
-            }
-            console.log('FormConfig Data >', formData)
-            this.$time.textContent = `${formData.fulltime}:00`
+    if (this.formCreate.isValid()) {
+        const formData = {
+            ...this.formCreate.value()
         }
-
-    // if (event.target.value.length > 2 || event.target.value > 60) {
-    //     alert('Не больше 60 минут')
-    //     event.target.value = '25'
-    // }
-    // if (event.target.value != 0) {
-    //     if (!parseInt(event.target.value)) {
-    //         alert('Это что за дичь тут мне подсунули!?')
-    //         event.target.value = '25'
-    //     }
-    // }
-    // if (event.target.value == 0) {
-    //     event.target.value = '25'
-    // }
-    // if (event.target.value < 0) {
-    //     alert('Это как так???')
-    //     event.target.value = '25'
-    // }
-
-    // this.$time.textContent = `${this.pomidorkaTime}:00`
+       
+        this.$pomidorkaList.insertAdjacentHTML('afterend', `<li>${formData.pomidorkatitle}</li>`)
+    }
 }
-function submitCreateFormHandler(event) {
 
+function configFormtHandler(event) {
+    event.preventDefault()
+    if (this.formConfig.isValid()) {
+        enabledElement(this.$startTimer)
+        enabledElement(this.$stopTimer)
+        const formData = {
+            ...this.formConfig.value()
+        }
+        console.log(formData)
+        
+        this.$time.textContent = `${formData.fulltime}:00`
+    } else {
+        disabledElement(this.$startTimer)
+        disabledElement(this.$stopTimer)
+    }
 }
+
 function clickStartHandler(event) {
     visibilityHandler(event.target, this.$pauseTimer)
     this.id_timer = setInterval(tickPomidorka.bind(this), 1000)
-    // fulltime.setAttribute("disabled", "disabled")
+    disabledFormControls(this.formConfig)
 }
 function clickPauseHandler(event) {
     visibilityHandler(event.target, this.$startTimer)
@@ -117,7 +101,7 @@ function clickStopHandler() {
     visibilityHandler(this.$pauseTimer, this.$startTimer)
     clearInterval(this.id_timer)
     addValueToElement(`25:00`, this.$time)
-    // $fulltime.removeAttribute("disabled")
+    enabledFormControls(this.formConfig)
 }
 function tickPomidorka() {
     let time_list = this.$time.innerHTML.split(':')
@@ -128,8 +112,7 @@ function tickPomidorka() {
         if (min == 0) {
             addValueToElement(`${this.pomidorkaTime}`, this.$time)
             visibilityHandler(this.$pauseTimer, this.$startTimer)
-
-            // fulltime.removeAttribute("disabled")
+            enabledFormControls(this.formConfig)
             clearInterval(this.id_timer)
             return
         }
@@ -141,16 +124,40 @@ function tickPomidorka() {
 
     addValueToElement(`${min}:${sec}`, this.$time)
 }
+function enabledFormControls(formOject) {
+    Object.keys(formOject.controls).forEach((control) => {
+        formOject.form[control].removeAttribute("disabled")      
+    })
+}
+function disabledFormControls(formOject) {
+    Object.keys(formOject.controls).forEach((control) => {
+        formOject.form[control].setAttribute("disabled", "disabled")      
+    })
+}
+
+function enabledElement(el) {
+    el.removeAttribute('disabled')
+    el.classList.remove('disabled')
+}
+function disabledElement(el) {
+    el.setAttribute('disabled', 'disabled')
+    el.classList.add('disabled')
+}
+
+
 function hideElement(el) {
     el.classList.add('hide')
 }
+
 function showElement(el) {
     el.classList.remove('hide')
 }
+
 function visibilityHandler(toHideElement, toShowElement) {
     hideElement(toHideElement)
     showElement(toShowElement)
 }
+
 function addValueToElement(value, el) {
     el.innerHTML = value
 }
