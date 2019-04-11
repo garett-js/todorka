@@ -1,6 +1,8 @@
 import { Component } from '../js_core/component'
 import { Validators } from '../js_core/validators'
 import { Form } from '../js_core/form'
+import { apiService } from '../js_services/api.service'
+import { TransormSerive } from '../js_services/transform.service'
 import '../js_core/libs'
 
 export class PomidorkaTimerComponent extends Component {
@@ -46,6 +48,25 @@ export class PomidorkaTimerComponent extends Component {
         if (!this.started) {
             this.startEventListining()
         }
+
+        this.renderList()
+
+    }
+
+    async renderList() {
+        this.$pomidorkaList.innerHTML = ''
+        const fbData = await apiService.getValues()
+        const pomidorkos = TransormSerive.firebaseObjToArray(fbData)
+
+        console.log(pomidorkos)
+
+        const html = pomidorkos.map(pom => {
+            return `<li>${pom.title}. Количество: ${pom.count}</li>`
+        })
+
+        console.log(html)
+
+        this.$pomidorkaList.insertAdjacentHTML('afterbegin', html.join(' '))
     }
 
     startEventListining() {
@@ -58,7 +79,6 @@ export class PomidorkaTimerComponent extends Component {
         this.$createFormElement.addEventListener('submit', createFormHandler.bind(this))
     }
 }
-
 // private
 function createFormHandler(event) {
     event.preventDefault()
@@ -66,11 +86,9 @@ function createFormHandler(event) {
         const formData = {
             ...this.formCreate.value()
         }
-       
-        this.$pomidorkaList.insertAdjacentHTML('afterend', `<li>${formData.pomidorkatitle}</li>`)
+        this.$pomidorkaList.insertAdjacentHTML('afterbegin', `<li>${formData.pomidorkatitle}</li>`)
     }
 }
-
 function configFormtHandler(event) {
     event.preventDefault()
     if (this.formConfig.isValid()) {
@@ -79,15 +97,12 @@ function configFormtHandler(event) {
         const formData = {
             ...this.formConfig.value()
         }
-        console.log(formData)
-        
         this.$time.textContent = `${formData.fulltime}:00`
     } else {
         disabledElement(this.$startTimer)
         disabledElement(this.$stopTimer)
     }
 }
-
 function clickStartHandler(event) {
     visibilityHandler(event.target, this.$pauseTimer)
     this.id_timer = setInterval(tickPomidorka.bind(this), 1000)
@@ -126,12 +141,12 @@ function tickPomidorka() {
 }
 function enabledFormControls(formOject) {
     Object.keys(formOject.controls).forEach((control) => {
-        formOject.form[control].removeAttribute("disabled")      
+        formOject.form[control].removeAttribute("disabled")
     })
 }
 function disabledFormControls(formOject) {
     Object.keys(formOject.controls).forEach((control) => {
-        formOject.form[control].setAttribute("disabled", "disabled")      
+        formOject.form[control].setAttribute("disabled", "disabled")
     })
 }
 
@@ -143,21 +158,16 @@ function disabledElement(el) {
     el.setAttribute('disabled', 'disabled')
     el.classList.add('disabled')
 }
-
-
 function hideElement(el) {
     el.classList.add('hide')
 }
-
 function showElement(el) {
     el.classList.remove('hide')
 }
-
 function visibilityHandler(toHideElement, toShowElement) {
     hideElement(toHideElement)
     showElement(toShowElement)
 }
-
 function addValueToElement(value, el) {
     el.innerHTML = value
 }

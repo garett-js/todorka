@@ -83,6 +83,12 @@ main {
 .app-menu ul>li:hover {
     background-color: rgba(0, 0, 0, 0.30);
 }
+.active {
+    background-color: rgba(0, 0, 0, 0.30);
+}
+.disabled-menu-item {
+    pointer-events: none;
+}
 
 .app-menu ul.top {
     display: flex;
@@ -202,7 +208,7 @@ footer {
     box-shadow: none;
 }
 .disabled:hover {
-    
+
 }
 
 @media all and (max-width: 600px) {

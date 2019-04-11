@@ -1,0 +1,31 @@
+{
+    "pomidorkos" : [
+        {
+            "title" : "Сделать верстку на FlexBox",
+            "count" : 4
+        },
+        {
+            "title" : "Пройти главу CSS для JS",
+            "count" : 2
+        },
+        {
+            "title" : "Дрисовать дизайн",
+            "count" : 7
+        },
+        {
+            "title" : "Пройти курсы по flexbox на htmlacademy",
+            "count" : 2
+        }
+    ],
+    "timerconfig" : [
+        {
+            "pomidorkaTime": "25:00"
+        },
+        {
+            "pomidorkaBreak": "5:00"
+        },
+        {
+            "pomidorkaLongBreak": "15:00"
+        }
+    ]
+}

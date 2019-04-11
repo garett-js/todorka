@@ -9,7 +9,7 @@ const TerserJSPlugin = require("terser-webpack-plugin")
 
 module.exports = {
     // Входная точка приложения
-    entry: './src/index.js',
+    entry: ['@babel/polyfill', './src/index.js'],
     output: {
         // Файл bundle.js после билда в папке dist
         filename: 'bundle.js',
@@ -38,6 +38,9 @@ module.exports = {
             //chunkFilename: '[id].css'
         })
     ],
+    resolve: {
+        extensions: ['.js']
+    },
     module: {
         rules: [
             // Правило как будет грузится файл css
@@ -53,11 +56,11 @@ module.exports = {
             //     use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
             // },
             // // Правило как будет грузится файл Sass
-            // {
-            //     test: /\.scss$/,
-            //     //  use: ['style-loader', 'css-loader'],
-            //     use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-            // },
+            {
+                test: /\.scss$/,
+                //  use: ['style-loader', 'css-loader'],
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+            },
             // Правило как будет грузится babel
             {
                 test: /\.js$/,

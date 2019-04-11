@@ -26,8 +26,10 @@ function  tabClickHandler(event) {
 
         Array.from(this.$el.querySelectorAll('.js-tab')).forEach( (e) => {
             e.classList.remove('active')
+            e.classList.remove('disabled-menu-item')
         })
         target.classList.add('active')
+        target.classList.add('disabled-menu-item')
 
         const activeTab = this.tabs.find(e => e.name === target.dataset.name)
         this.tabs.forEach(t => t.component.hide())
@@ -36,4 +38,6 @@ function  tabClickHandler(event) {
 
         activeTab.component.show()
     }
+
+
 }
