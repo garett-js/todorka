@@ -3,7 +3,6 @@ import { Component } from "../js_core/component";
 export class NavigationComponent extends Component {
     constructor(id) {
         super(id)
-
         this.tabs = []
     }
 
@@ -22,7 +21,7 @@ function  tabClickHandler(event) {
     let target = event.target
     target = target.closest('li') // клик по вложенным элементам кинуть на родителя
 
-    if (target.classList.contains('js-tab')) {
+    if (target && target.classList.contains('js-tab')) {
 
         Array.from(this.$el.querySelectorAll('.js-tab')).forEach( (e) => {
             e.classList.remove('active')

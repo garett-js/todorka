@@ -1,9 +1,7 @@
-import { Component } from '../js_core/component'
-import { Validators } from '../js_core/validators'
-import { Form } from '../js_core/form'
-import { apiService } from '../js_services/api.service'
-import { TransormSerive } from '../js_services/transform.service'
-import '../js_core/libs'
+import { Component }           from '../js_core/component'
+import { pomidorkaController } from '../mvc/controllers/pomidorka.controller'
+import { Validators }          from '../js_core/validators'
+import { Form }                from '../js_core/form'
 
 export class PomidorkaTimerComponent extends Component {
     constructor(id) {
@@ -39,7 +37,8 @@ export class PomidorkaTimerComponent extends Component {
             longbreaktime: [Validators.required]
         })
         this.formCreate = Form.Create(this.$createFormElement, {
-            pomidorkatitle: [Validators.required]
+            pomidorkatitle: [Validators.required],
+            count: [Validators.required]
         })
     }
 
@@ -48,24 +47,12 @@ export class PomidorkaTimerComponent extends Component {
         if (!this.started) {
             this.startEventListining()
         }
-
-        this.renderList()
-
+        this.renderList(pomidorkaController)
     }
 
-    async renderList() {
+    async renderList(controller) {
         this.$pomidorkaList.innerHTML = ''
-        const fbData = await apiService.getValues()
-        const pomidorkos = TransormSerive.firebaseObjToArray(fbData)
-
-        console.log(pomidorkos)
-
-        const html = pomidorkos.map(pom => {
-            return `<li>${pom.title}. Количество: ${pom.count}</li>`
-        })
-
-        console.log(html)
-
+        const html = await controller.index()
         this.$pomidorkaList.insertAdjacentHTML('afterbegin', html.join(' '))
     }
 
@@ -80,13 +67,14 @@ export class PomidorkaTimerComponent extends Component {
     }
 }
 // private
-function createFormHandler(event) {
+async function createFormHandler(event) {
     event.preventDefault()
     if (this.formCreate.isValid()) {
         const formData = {
             ...this.formCreate.value()
         }
-        this.$pomidorkaList.insertAdjacentHTML('afterbegin', `<li>${formData.pomidorkatitle}</li>`)
+        this.$pomidorkaList.insertAdjacentHTML('afterbegin', `<li>Количество ${formData.count} | ${formData.pomidorkatitle}</li>`)
+        await pomidorkaController.create(formData)
     }
 }
 function configFormtHandler(event) {
@@ -149,7 +137,6 @@ function disabledFormControls(formOject) {
         formOject.form[control].setAttribute("disabled", "disabled")
     })
 }
-
 function enabledElement(el) {
     el.removeAttribute('disabled')
     el.classList.remove('disabled')

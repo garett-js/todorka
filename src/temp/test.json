@@ -1,19 +1,19 @@
 {
     "pomidorkos" : [
         {
-            "title" : "Сделать верстку на FlexBox",
+            "pomidorkatitle" : "Сделать верстку на FlexBox",
             "count" : 4
         },
         {
-            "title" : "Пройти главу CSS для JS",
+            "pomidorkatitle" : "Пройти главу CSS для JS",
             "count" : 2
         },
         {
-            "title" : "Дрисовать дизайн",
+            "pomidorkatitle" : "Дрисовать дизайн",
             "count" : 7
         },
         {
-            "title" : "Пройти курсы по flexbox на htmlacademy",
+            "pomidorkatitle" : "Пройти курсы по flexbox на htmlacademy",
             "count" : 2
         }
     ],
