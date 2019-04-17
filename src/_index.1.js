@@ -4,8 +4,7 @@ import { PomidorkaTimerComponent } from './js_components/pomidorka.component'
 import { PlansComponent }          from './js_components/plans.component'
 
 // section import style
-// import './style/css/index.css'
-import './style/scss/index.scss'
+import './style/css/index.css'
 
 const nav = new NavigationComponent('.app-menu')
 console.log(nav)

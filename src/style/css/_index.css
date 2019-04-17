@@ -1,0 +1,263 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: #F0F0F0;
+}
+header {
+    position: relative;
+    flex: 0 0 80px;
+    display: flex;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+header .header-logo {
+    background-color: #E8485A;
+    flex: 0 0 80px;
+    color: #fff;
+    text-align: center;
+    padding-top: 30px;
+}
+header .header-timer {
+    flex: 1 0 auto;
+    align-self: center;
+
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 40px;
+}
+header .header-user {
+    flex: 0 0 auto;
+    align-self: center;
+    padding-right: 40px;
+}
+.header-user .user-info {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+}
+
+main {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+.app-menu {
+    flex: 0 0 80px;
+    position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background: #313740;
+
+    display: flex;
+    flex-direction: column;
+
+}
+.app-menu ul.top,
+.app-menu ul.bottom  {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+.app-menu ul.top > li,
+.app-menu ul.bottom > li {
+    flex: 0 0 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.app-menu ul>li:hover {
+    background-color: rgba(0, 0, 0, 0.30);
+}
+.active {
+    background-color: rgba(0, 0, 0, 0.30);
+}
+.disabled-menu-item {
+    pointer-events: none;
+}
+
+.app-menu ul.top {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+}
+.app-menu .empty {
+    flex: 1 0 auto;
+}
+
+.app-menu ul.bottom {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+}
+
+section.app-workspace {
+    padding: 40px;
+    flex: 1 0 auto;
+    box-sizing: border-box;
+}
+
+.inner-section {
+    /* border: 2px solid #E8485A; */
+    position: relative;
+    display: flex;
+}
+
+.pomidorka-timer {
+    /* border: 2px solid #2D9CDB; */
+    /* flex: 1 0 auto; */
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    text-align: center;
+}
+.pomidorka-timer .title {
+    font-size: 24px;
+    line-height: 5px;
+}
+.time {
+    font-size: 72px;
+    font-weight: bold;
+}
+
+.btn {
+    border: 0;
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+
+    line-height: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-right: 5px;
+}
+
+.btn {
+    width: 100px;
+}
+.btn-start {
+    background-color: #2D9CDB;
+}
+.btn-end {
+    background-color: #E8485A;
+}
+.btn-pause {
+    background-color: rgb(25, 185, 11);
+}
+
+.btn-start:hover {
+    background-color: rgb(3, 90, 141);
+}
+.btn-end:hover {
+    background-color: rgb(119, 0, 20);
+}
+.btn-pause:hover {
+    background-color: rgb(0, 97, 5);
+}
+.btn:active {
+    background-color: #313740;
+}
+
+.pomidorka-left {
+    flex: 0 0 auto;
+    margin-right: 40px;
+}
+.pomidorka-list {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    flex: 1 0 auto;
+}
+.pomidorka-config {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+footer {
+    flex: 0 0 20px;
+    background-color:#2D9CDB;
+}
+
+.hide {
+    display: none;
+}
+.validation-error {
+    font-size: 12px;
+    color: #E8485A;
+    font-weight: bold;
+}
+.disabled {
+    opacity: 0.2;
+    box-shadow: none;
+}
+.disabled:hover {
+
+}
+
+@media all and (max-width: 600px) {
+    header { flex-direction: column; }
+    header .header-timer {
+        font-size: 24px;
+        padding-left: 0px;
+        align-self: center;
+    }
+    header .header-user {
+        align-self: center;
+    }
+    main {
+        flex-direction: column;
+    }
+}
+
+@media all and (max-width: 1444px) {
+    .inner-section {
+        flex-direction: column;
+    }
+    .pomidorka-left {
+        display: flex;
+        flex-direction: row;
+        margin-right: 0;
+        margin-bottom:  40px;
+    }
+    .pomidorka-timer {
+        flex: 1 0 auto;
+        margin-right: 40px;
+    }
+    .pomidorka-config {
+        flex: 1 0 auto;
+        margin-top: 0;
+    }
+}
+
+.for-anime {
+    opacity:0; /*Элемент полностью прозрачный (невидимый)*/
+    transition: 1s; /*Скорость перехода состояния элемента*/
+    animation: show 2s 1; /* Указываем название анимации, её время и количество повторов*/
+    animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
+    animation-delay: 0s; /* Задержка перед началом */
+}
+@keyframes show{
+    0%{
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}

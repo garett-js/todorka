@@ -1,0 +1,39 @@
+/* СТИЛИ ДЛЯ БЛОКА ТАЙМЕРА */
+.pomidorka-timer {
+    text-align: center;
+
+    &__time {
+        font-size: 72px;
+        font-weight: bold;
+    }
+    &__title {
+        font-size: 24px;
+        line-height: 5px;
+    }
+    &__btn-start {
+        background-color: #2D9CDB;
+        &:hover {
+            background-color: rgb(3, 90, 141);
+        }
+    }
+    &__btn-pause {
+        background-color: rgb(25, 185, 11);
+        &:hover {
+            background-color: rgb(0, 97, 5);
+        }
+    }
+    &__btn-end {
+        background-color: #E8485A;
+        &:hover {
+            background-color: rgb(119, 0, 20);
+        }
+    }
+    &_theme_dark {
+        background-color: rgba(196, 196, 196, 0.15);
+        color: #fff;
+        position: relative;
+        padding: 20px;
+        margin-bottom: 40px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+    }
+}

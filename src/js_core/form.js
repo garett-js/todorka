@@ -52,7 +52,7 @@ export class Form {
             console.log(invalidMessages)
             const msg = invalidMessages.join('<br>')
 
-            !isValid ?  setError(this.form[control], msg) : clearError(this.form[control])
+            !isValid ?  setError(this.form, this.form[control], msg) : clearError(this.form, this.form[control])
 
             isFormValid = isFormValid && isValid
          })
@@ -60,17 +60,18 @@ export class Form {
     }
 }
 
-function setError($control, message) {
-    clearError($control)
+function setError($form, $control, message) {
+    clearError($form, $control)  
     $control.value = ''
     const error = `<p class="validation-error">${message}</p>`
-    $control.classList.add('invalid')
+    $control.classList.add('control-invalid')
     $control.insertAdjacentHTML('afterend', error)
 }
 
-function clearError($control) {
-    $control.classList.remove('invalid')
-    if ($control.nextSibling) {
-        $control.closest('.form-control').removeChild($control.nextSibling)
+function clearError($form, $control) {
+    $control.classList.remove('control-invalid')
+
+    if ($control.nextElementSibling) {      
+        $control.closest('label').removeChild($control.nextElementSibling)
     }
 }

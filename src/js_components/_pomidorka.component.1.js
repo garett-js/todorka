@@ -19,18 +19,17 @@ export class PomidorkaTimerComponent extends Component {
         this.pomidorkaBreak = '5:00'
         this.pomidorkaLongBreak = '15:00'
 
-        this.$time = this.$el.querySelector('.pomidorka-timer__time')
-
+        this.$time = this.$el.querySelector('.time')
         this.$time.innerHTML = this.pomidorkaTime
 
-        this.$startTimer = this.$el.querySelector('.js-btn-start')
-        this.$pauseTimer = this.$el.querySelector('.js-btn-pause')
-        this.$stopTimer  = this.$el.querySelector('.js-btn-end')
+        this.$startTimer = this.$el.querySelector('.btn-start')
+        this.$pauseTimer = this.$el.querySelector('.btn-pause')
+        this.$stopTimer  = this.$el.querySelector('.btn-end')
 
-        this.$pomidorkaList = document.querySelector('.pomidorka-list')
+        this.$pomidorkaList = document.getElementById('pomidorka-list')
 
-        this.$configFormElement = document.querySelector('.pomidorka-config-form')
-        this.$createFormElement = document.querySelector('.pomidorka-create-form')
+        this.$configFormElement = document.getElementById('pomidorka-config')
+        this.$createFormElement = document.getElementById('pomidorka-create')
 
         this.formConfig = Form.Create(this.$configFormElement, {
             fulltime: [Validators.required, Validators.maxLength(2), Validators.minLength(1)],
@@ -147,10 +146,10 @@ function disabledElement(el) {
     el.classList.add('disabled')
 }
 function hideElement(el) {
-    el.classList.add('js-hide')
+    el.classList.add('hide')
 }
 function showElement(el) {
-    el.classList.remove('js-hide')
+    el.classList.remove('hide')
 }
 function visibilityHandler(toHideElement, toShowElement) {
     hideElement(toHideElement)

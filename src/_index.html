@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Todorka</title>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <header id="app-header" class="app-header">
+            <div class="header-logo">Todorka</div>
+            <div class="header-timer">25:00 <br>Пройти уроки про FlexBox</div>
+            <div class="header-user">User - Иванов Иван Иванович
+                <div class="user-info hide">
+                    <ul>
+                        <li>Профиль</li>
+                        <li>Настройки</li>
+                        <li>Выйти</li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <aside id="app-menu" class="app-menu">
+                <ul class="top">
+                    <li class="js-tab active" data-name="pomidorka"><i class="far fa-heart fa-2x"></i>Помидорка</li>
+                    <li class="js-tab" data-name="plans"><i class="far fa-heart fa-2x"></i>Планы</li>
+                    <li><i class="far fa-heart fa-2x"></i>Бложик</li>
+                    <li><i class="far fa-heart fa-2x"></i>Графики</li>
+                </ul>
+
+                <div class="empty"></div>
+
+                <ul class="bottom">
+                    <li class="js-tab"><i class="far fa-heart fa-2x"></i>Настройки</li>
+                    <li class="js-tab"><i class="far fa-heart fa-2x"></i>Bugs</li>
+                </ul>
+            </aside>
+
+            <section class="app-workspace">
+
+                <div id="pomidorka" class="inner-section">
+                    <div class="pomidorka-left">
+                        <div id="pomidorka-timer" class="pomidorka-timer">
+                            <span class="time">0:05</span>
+                            <p class="title">Курсы по JS ES6</p>
+                            <button class="btn btn-start">Поехали</button>
+                            <button class="btn btn-pause hide">Пауза</button>
+                            <button class="btn btn-end">Хватит</button>
+                        </div>
+                        <div class="pomidorka-config">
+                            <h2 class="hide">Настройки</h2>
+                            <form action="post" id="pomidorka-config">
+                                <div class="form-control">
+                                    <label for="full-time">Время помидорки</label>
+                                    <input type="text" id="full-time" name="fulltime" value="25">
+                                </div>
+                                <div class="form-control">
+                                    <label for="break-time">Время перерыва</label>
+                                    <input type="text" id="break-time" name="breaktime" value="5">
+                                </div>
+                                <div class="form-control">
+                                    <label for="long-break-time">Время большого перерыва</label>
+                                    <input type="text" id="long-break-time" name="longbreaktime" value="15">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="pomidorka-list">
+                        <form method="post" id="pomidorka-create">
+                            <h2 class="h4">Добавить помидорку</h2>
+
+                            <div class="form-control">
+                                <label>Цель помидорки:</label>
+                                <input type="text" name="pomidorkatitle" placeholder="Напишете помидорку">
+                            </div>
+                            <div class="form-control">
+                                <label>Количество:</label>
+                                <input type="number" name="count" placeholder="Сколько помидорок">
+                            </div>
+
+                            <button class="btn btn-start" type="submit">Тык</button>
+
+                            <ul id="pomidorka-list"></ul>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="plans" class="inner-section hide">Список Планов</div>
+                <div id="blog" class="inner-section hide">Бложик</div>
+                <div id="chart" class="inner-section hide">Графики</div>
+                <div id="config" class="inner-section hide">Настройки</div>
+                <div id="bugs" class="inner-section hide">Ошибки</div>
+            </section>
+        </main>
+
+        <footer id="app-footer" class="app-footer"></footer>
+    </div>
+    <!-- include firebase __start -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+    <!-- __end include firebase -->
+
+</body>
+
+</html>

@@ -5,7 +5,7 @@ export function pomidorkaIndex(dataObj = {}) {
     console.log(data)
 
     const html = data.map(v => {
-        return `<li>Количество ${v.count} | ${v.pomidorkatitle}</li>`
+        return `<li class="pomidorka-list__item">Количество ${v.count} | ${v.pomidorkatitle}</li>`
     })
 
     return html

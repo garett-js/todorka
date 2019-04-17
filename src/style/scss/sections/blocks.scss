@@ -1,0 +1,71 @@
+/* СТИЛИ ДЛЯ СТРОИТЕЛЬНЫХ ЭЛЕМЕНТОВ */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: #F0F0F0;
+    min-width: 520px;
+}
+.app-header {
+    flex: 0 0 65px;
+    /* border: 2px solid tomato; */
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    &__logo {
+        font-family: 'Berkshire Swash', cursive;
+        font-size: 26px;
+        width: 240px;
+        padding-top: 16px;
+        background-color: #E8485A;
+        color: #fff;  
+        text-align: center;
+    }
+}
+
+.app-footer {
+    flex: 0 0 20px;
+    /* border: 2px solid tomato; */
+    box-sizing: border-box;
+    background-color:#2D9CDB;
+}
+.main {
+    flex: 1 0 auto;
+    display: flex;
+    /* border: 2px solid tomato; */
+    box-sizing: border-box;
+
+    &__aside {
+        flex: 0 0 240px;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        background: #313740;
+        /* border: 2px solid rgb(0, 183, 255); */
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.25);
+    }
+    &__workspace {
+        flex: 1 1 auto;
+        /* border: 2px solid rgb(0, 183, 255); */
+        box-sizing: border-box;
+        padding: 40px;
+    }
+}
+
+
+/* общий стиль для подложки у блоков */
+.block-content {
+    position: relative;
+    padding: 20px;
+    background-color: #fff;
+    margin-bottom: 40px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}

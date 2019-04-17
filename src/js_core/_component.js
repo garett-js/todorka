@@ -1,7 +1,6 @@
 export class Component {
     constructor(id) {
-        // this.$el = document.getElementById(id)
-        this.$el = document.querySelector(id)
+        this.$el = document.getElementById(id)
         this.init()
     }
 
@@ -13,11 +12,11 @@ export class Component {
     }
 
     show() {
-        this.$el.classList.remove('js-hide')
+        this.$el.classList.remove('hide')
         this.onShow()
     }
     hide() {
-        this.$el.classList.add('js-hide')
+        this.$el.classList.add('hide')
         this.onHide()
     }
 }

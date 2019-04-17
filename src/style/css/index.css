@@ -1,263 +1,217 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
+.btn {
+    border: 0;
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    line-height: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-right: 5px;
+    width: 90px;
+    border-radius: 12px;
+}
+.btn:active {
+    background-color: #313740;
+}
+.js-hide {
+    display: none;
+}
+.validation-error {
+    color: #E8485A;
+    font-size: 10px;
+}
+.control-invalid {
+    border: 2px solid #E8485A;
+}
+
+/* СТИЛИ ДЛЯ СТРОИТЕЛЬНЫХ ЭЛЕМЕНТОВ */
 .wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     box-sizing: border-box;
     background-color: #F0F0F0;
+    min-width: 520px;
 }
-header {
+.app-header {
+    flex: 0 0 65px;
+    /* border: 2px solid tomato; */
+    box-sizing: border-box;
     position: relative;
-    flex: 0 0 80px;
     display: flex;
     background-color: #fff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-header .header-logo {
+.app-header__logo {
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 26px;
+    width: 240px;
+    padding-top: 16px;
     background-color: #E8485A;
-    flex: 0 0 80px;
-    color: #fff;
+    color: #fff;  
     text-align: center;
-    padding-top: 30px;
 }
-header .header-timer {
+.app-footer {
+    flex: 0 0 20px;
+    /* border: 2px solid tomato; */
+    box-sizing: border-box;
+    background-color:#2D9CDB;
+}
+.main {
     flex: 1 0 auto;
-    align-self: center;
-
-    font-size: 24px;
-    font-weight: bold;
-    padding-left: 40px;
-}
-header .header-user {
-    flex: 0 0 auto;
-    align-self: center;
-    padding-right: 40px;
-}
-.header-user .user-info {
-    position: absolute;
-    top: 5px;
-    right: 20px;
-}
-
-main {
     display: flex;
-    flex: 1 0 auto;
+    /* border: 2px solid tomato; */
+    box-sizing: border-box;
 }
-
+.main__workspace {
+    flex: 1 1 auto;
+    /* border: 2px solid rgb(0, 183, 255); */
+    box-sizing: border-box;
+    padding: 40px;
+}
+.main__aside {
+    flex: 0 0 240px;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background: #313740;
+    /* border: 2px solid rgb(0, 183, 255); */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.25);
+}
+/* общий стиль для подложки у блоков */
+.block-content {
+    position: relative;
+    padding: 20px;
+    background-color: #fff;
+    margin-bottom: 40px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+/* СТИЛИ ДЛЯ БЛОКА МЕНЮ */
 .app-menu {
-    flex: 0 0 80px;
     position: relative;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     background: #313740;
-
     display: flex;
     flex-direction: column;
-
+    height: 100%;
+    justify-content: space-between;
 }
-.app-menu ul.top,
-.app-menu ul.bottom  {
+.app-menu__list {
     list-style: none;
     margin: 0;
     padding: 0;
     font-size: 12px;
-
     color: #fff;
-    font-weight: bold;
     text-decoration: none;
-}
-.app-menu ul.top > li,
-.app-menu ul.bottom > li {
-    flex: 0 0 80px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+}
+.app-menu__item {
+    flex: 0 0 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
     cursor: pointer;
+    padding-left: 10px;
 }
-.app-menu ul>li:hover {
+.app-menu__item:hover {
     background-color: rgba(0, 0, 0, 0.30);
 }
-.active {
-    background-color: rgba(0, 0, 0, 0.30);
+.app-menu__item_state_active {
+    background-color: rgba(196, 196, 196, 0.15);
+    border-left: 4px solid #fff;
 }
-.disabled-menu-item {
+.app-menu__item_state_disabled {
     pointer-events: none;
 }
-
-.app-menu ul.top {
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 auto;
-}
-.app-menu .empty {
-    flex: 1 0 auto;
-}
-
-.app-menu ul.bottom {
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 auto;
-}
-
-section.app-workspace {
-    padding: 40px;
-    flex: 1 0 auto;
-    box-sizing: border-box;
-}
-
-.inner-section {
-    /* border: 2px solid #E8485A; */
-    position: relative;
-    display: flex;
-}
-
-.pomidorka-timer {
+.app_menu__indicators {
     /* border: 2px solid #2D9CDB; */
-    /* flex: 1 0 auto; */
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.app-menu__color-indicator {
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    margin: 0 5px;
+}
+.app-menu__color-indicator_red {background-color: #E8485A;}
+.app-menu__color-indicator_green {background-color: rgb(25, 185, 11);}
+.app-menu__color-indicator_blue {background-color: #2D9CDB;}
 
+.app-menu__count-indicator {
+    border-radius: 10px;
+    background-color: #2D9CDB;
+    width: 3em;
+    text-align: center;
+    margin: 0 5px;
+}
+.app-menu__text {
+    font-size: 14px;
+    margin: 0 10px;
+}
+
+/* СТИЛИ ДЛЯ БЛОКА ТАЙМЕРА */
+.pomidorka-timer {
     text-align: center;
 }
-.pomidorka-timer .title {
-    font-size: 24px;
-    line-height: 5px;
-}
-.time {
+.pomidorka-timer__time {
     font-size: 72px;
     font-weight: bold;
 }
-
-.btn {
-    border: 0;
-    color: #fff;
-    font-size: 14px;
-    text-transform: uppercase;
-
-    line-height: 30px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-right: 5px;
+.pomidorka-timer__title {
+    font-size: 24px;
+    line-height: 5px;
 }
-
-.btn {
-    width: 100px;
-}
-.btn-start {
+.pomidorka-timer__btn-start {
     background-color: #2D9CDB;
 }
-.btn-end {
-    background-color: #E8485A;
-}
-.btn-pause {
+.pomidorka-timer__btn-pause {
     background-color: rgb(25, 185, 11);
 }
-
-.btn-start:hover {
+.pomidorka-timer__btn-end {
+    background-color: #E8485A;
+}
+.pomidorka-timer__btn-start:hover {
     background-color: rgb(3, 90, 141);
 }
-.btn-end:hover {
+.pomidorka-timer__btn-end:hover {
     background-color: rgb(119, 0, 20);
 }
-.btn-pause:hover {
+.pomidorka-timer__btn-pause:hover {
     background-color: rgb(0, 97, 5);
 }
-.btn:active {
-    background-color: #313740;
+.pomidorka-timer_theme_dark {
+    background-color: rgba(196, 196, 196, 0.15);
+    color: #fff;
+    position: relative;
+    padding: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
 }
 
-.pomidorka-left {
-    flex: 0 0 auto;
-    margin-right: 40px;
+
+/* СТИЛИ ДЛЯ БЛОКА НАСТРОЕК */
+.pomidorka-config-form {
 }
+
+/* СТИЛИ ДЛЯ БЛОКА ФОРМЫ ДОБАВЛЕНИЯ ПОМИДОРОК*/
+.pomidorka-create-form {
+}
+
+/* СТИЛИ ДЛЯ БЛОКА СПИСКА ПОМИДОРОК */
 .pomidorka-list {
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-    flex: 1 0 auto;
-}
-.pomidorka-config {
-    margin-top: 40px;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-footer {
-    flex: 0 0 20px;
-    background-color:#2D9CDB;
-}
-
-.hide {
-    display: none;
-}
-.validation-error {
-    font-size: 12px;
-    color: #E8485A;
-    font-weight: bold;
-}
-.disabled {
-    opacity: 0.2;
-    box-shadow: none;
-}
-.disabled:hover {
-
-}
-
-@media all and (max-width: 600px) {
-    header { flex-direction: column; }
-    header .header-timer {
-        font-size: 24px;
-        padding-left: 0px;
-        align-self: center;
-    }
-    header .header-user {
-        align-self: center;
-    }
-    main {
-        flex-direction: column;
-    }
-}
-
-@media all and (max-width: 1444px) {
-    .inner-section {
-        flex-direction: column;
-    }
-    .pomidorka-left {
-        display: flex;
-        flex-direction: row;
-        margin-right: 0;
-        margin-bottom:  40px;
-    }
-    .pomidorka-timer {
-        flex: 1 0 auto;
-        margin-right: 40px;
-    }
-    .pomidorka-config {
-        flex: 1 0 auto;
-        margin-top: 0;
-    }
-}
-
-.for-anime {
-    opacity:0; /*Элемент полностью прозрачный (невидимый)*/
-    transition: 1s; /*Скорость перехода состояния элемента*/
-    animation: show 2s 1; /* Указываем название анимации, её время и количество повторов*/
-    animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
-    animation-delay: 0s; /* Задержка перед началом */
-}
-@keyframes show{
-    0%{
-        opacity:0;
-    }
-    100% {
-        opacity:1;
-    }
 }

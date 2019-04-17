@@ -24,11 +24,11 @@ function  tabClickHandler(event) {
     if (target && target.classList.contains('js-tab')) {
 
         Array.from(this.$el.querySelectorAll('.js-tab')).forEach( (e) => {
-            e.classList.remove('active')
-            e.classList.remove('disabled-menu-item')
+            e.classList.remove('app-menu__item_state_active')
+            e.classList.remove('app-menu__item_state_disabled')
         })
-        target.classList.add('active')
-        target.classList.add('disabled-menu-item')
+        target.classList.add('app-menu__item_state_active')
+        target.classList.add('app-menu__item_state_disabled')
 
         const activeTab = this.tabs.find(e => e.name === target.dataset.name)
         this.tabs.forEach(t => t.component.hide())
@@ -37,6 +37,5 @@ function  tabClickHandler(event) {
 
         activeTab.component.show()
     }
-
 
 }

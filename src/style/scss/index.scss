@@ -1,0 +1,15 @@
+@import '/mixins/colors';
+@import '/mixins/main';
+
+@import '/sections/general';
+@import '/sections/blocks';
+@import '/sections/app-menu';
+@import '/sections/pomidorka-timer';
+
+
+/* СТИЛИ ДЛЯ БЛОКА НАСТРОЕК */
+// .pomidorka-config-form {}
+/* СТИЛИ ДЛЯ БЛОКА ФОРМЫ ДОБАВЛЕНИЯ ПОМИДОРОК*/
+// .pomidorka-create-form {}
+/* СТИЛИ ДЛЯ БЛОКА СПИСКА ПОМИДОРОК */
+// .pomidorka-list {}

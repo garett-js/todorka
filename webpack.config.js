@@ -31,7 +31,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: './src/index.html'
+            template: './src/index.pug'
         }),
         new MiniCssExtractPlugin({
             filename: 'style.css'
@@ -43,19 +43,16 @@ module.exports = {
     },
     module: {
         rules: [
+            { 
+                test: /\.pug$/,
+                use: ['pug-loader']
+            },
             // Правило как будет грузится файл css
             {
                 test: /\.css$/,
                 //  use: ['style-loader', 'css-loader'],
                 use: [MiniCssExtractPlugin.loader, 'css-loader']
             },
-            // Правило как будет грузится файл Less
-            // {
-            //     test: /\.less$/,
-            //     //  use: ['style-loader', 'css-loader'],
-            //     use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
-            // },
-            // // Правило как будет грузится файл Sass
             {
                 test: /\.scss$/,
                 //  use: ['style-loader', 'css-loader'],

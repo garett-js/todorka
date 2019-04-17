@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development",
-    "dev:watch": "webpack --mode development --watch",
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development --open"
+    "d": "webpack --mode development",
+    "b": "webpack --mode production",
+    "s": "webpack-dev-server --mode development --open"
   },
   "keywords": [
     "javascript",
@@ -30,6 +29,8 @@
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "pug": "^2.0.3",
+    "pug-loader": "^2.4.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.1.2",
