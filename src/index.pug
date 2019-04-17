@@ -10,23 +10,18 @@ html(lang='ru')
 		title Todorka
 	body
 		.wrapper
-			include templates/header.pug
+			include templates/header
 			main.main
 				aside.main__aside
-					section.pomidorka-timer.pomidorka-timer_theme_dark.js-aside-position
-						span.pomidorka-timer__time 0:05
-						p.pomidorka-timer__title Курсы по JS ES6
-						button.btn.pomidorka-timer__btn-start.js-btn-start Поехали
-						button.btn.pomidorka-timer__btn-pause.js-btn-pause.js-hide Пауза
-						button.btn.pomidorka-timer__btn-end.js-btn-end Хватит
-					include templates/navigation.pug
+					include templates/pomidorka-timer-aside
+					include templates/navigation
 					
 				section.main__workspace
 					.inner-section.pomidorka-space
-						include templates/pomidorka-space/pomidorka-timer.pug
-						include templates/pomidorka-space/pomidorka-config.pug
-						include templates/pomidorka-space/pomidorka-create.pug
+						include templates/pomidorka-space/pomidorka-timer
+						include templates/pomidorka-space/pomidorka-config
+						include templates/pomidorka-space/pomidorka-create
 					.inner-section.plans-space.js-hide
-						include templates/plans-space/plans.pug
-			include templates/footer.pug			
+						include templates/plans-space/plans
+			include templates/footer		
 			
