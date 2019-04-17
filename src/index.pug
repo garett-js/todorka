@@ -15,13 +15,14 @@ html(lang='ru')
 				aside.main__aside
 					include templates/pomidorka-timer-aside
 					include templates/navigation
-					
+
 				section.main__workspace
 					.inner-section.pomidorka-space
-						include templates/pomidorka-space/pomidorka-timer
-						include templates/pomidorka-space/pomidorka-config
-						include templates/pomidorka-space/pomidorka-create
+						.row
+							include templates/pomidorka-space/pomidorka-timer
+							include templates/pomidorka-space/pomidorka-config
+							include templates/pomidorka-space/pomidorka-create
 					.inner-section.plans-space.js-hide
 						include templates/plans-space/plans
-			include templates/footer		
-			
+			include templates/footer
+
