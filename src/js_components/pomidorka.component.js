@@ -15,21 +15,25 @@ export class PomidorkaTimerComponent extends Component {
     init() {
         this.id_timer = null
 
-        this.pomidorkaTime = '00:03'
-        this.pomidorkaBreak = '5:00'
-        this.pomidorkaLongBreak = '15:00'
+        this.time      = '00:05'
+        this.break     = '00:05'
+        this.longBreak = '15:00'
 
-        this.$time = this.$el.querySelector('.pomidorka-timer__time')
+        // Get block POMIDORKA TIMER
+        this.$pomidorkaTimer = this.$el.querySelector('.pomidorka-timer')
+        this.$pomidorkaTime  = this.$pomidorkaTimer.querySelector('.pomidorka-timer__time')
+        this.$pomidorkaTitle = this.$pomidorkaTimer.querySelector('.pomidorka-timer__title')
+        this.$startTimer     = this.$pomidorkaTimer.querySelector('.js-btn-start')
+        this.$pauseTimer     = this.$pomidorkaTimer.querySelector('.js-btn-pause')
+        this.$stopTimer      = this.$pomidorkaTimer.querySelector('.js-btn-end')
 
-        this.$time.innerHTML = this.pomidorkaTime
-
-        this.$startTimer = this.$el.querySelector('.js-btn-start')
-        this.$pauseTimer = this.$el.querySelector('.js-btn-pause')
-        this.$stopTimer  = this.$el.querySelector('.js-btn-end')
-
+        this.$pomidorkaTime.innerHTML = this.time
+ 
+        // Get block POMIDORKA LIST
         this.$pomidorkaList = document.querySelector('.pomidorka-list')
-
+        // Get block POMIDORKA CONFIG FORM
         this.$configFormElement = document.querySelector('.pomidorka-config-form')
+        // Get block POMIDORKA CREATE FORM
         this.$createFormElement = document.querySelector('.pomidorka-create-form')
 
         this.formConfig = Form.Create(this.$configFormElement, {
@@ -86,7 +90,7 @@ function configFormtHandler(event) {
         const formData = {
             ...this.formConfig.value()
         }
-        this.$time.textContent = `${formData.fulltime}:00`
+        this.$pomidorkaTime.textContent = `${formData.fulltime}:00`
     } else {
         disabledElement(this.$startTimer)
         disabledElement(this.$stopTimer)
@@ -104,17 +108,30 @@ function clickPauseHandler(event) {
 function clickStopHandler() {
     visibilityHandler(this.$pauseTimer, this.$startTimer)
     clearInterval(this.id_timer)
-    addValueToElement(`25:00`, this.$time)
+    addValueToElement(`00:05`, this.$pomidorkaTime)
     enabledFormControls(this.formConfig)
+    resetBlockTimer.call(this)
 }
 function tickPomidorka() {
-    let time_list = this.$time.innerHTML.split(':')
+    let time_list = this.$pomidorkaTime.innerHTML.split(':')
+    
+    
     let min = time_list[0]
     let sec = time_list[1]
 
     if (sec == 0) {
         if (min == 0) {
-            addValueToElement(`${this.pomidorkaTime}`, this.$time)
+
+            if (!this.isBreak) {
+                this.$pomidorkaTimer.classList.add('pomidorka-timer_bg-color-break')     
+                addValueToElement(`${this.break}`, this.$pomidorkaTime)  
+                this.$pomidorkaTimer.querySelector('.break').classList.remove('js-hide')         
+                this.isBreak = true
+                return
+            }
+
+            resetBlockTimer.call(this) 
+            addValueToElement(`${this.time}`, this.$pomidorkaTime)
             visibilityHandler(this.$pauseTimer, this.$startTimer)
             enabledFormControls(this.formConfig)
             clearInterval(this.id_timer)
@@ -126,7 +143,7 @@ function tickPomidorka() {
     } else sec--
     if (sec < 10) { sec = "0" + sec }
 
-    addValueToElement(`${min}:${sec}`, this.$time)
+    addValueToElement(`${min}:${sec}`, this.$pomidorkaTime)
 }
 function enabledFormControls(formOject) {
     Object.keys(formOject.controls).forEach((control) => {
@@ -158,4 +175,11 @@ function visibilityHandler(toHideElement, toShowElement) {
 }
 function addValueToElement(value, el) {
     el.innerHTML = value
+}
+function resetBlockTimer() {
+    this.isBreak = false
+    if (this.$pomidorkaTimer.classList.contains('pomidorka-timer_bg-color-break')) {
+        this.$pomidorkaTimer.classList.remove('pomidorka-timer_bg-color-break')
+    }
+    this.$pomidorkaTimer.querySelector('.break').classList.add('js-hide') 
 }

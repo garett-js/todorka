@@ -2,6 +2,17 @@
 .pomidorka-timer {
     text-align: center;
 
+    &_bg-color-pause {
+        background-color: #CFD8DC;
+    }
+    &_bg-color-break {
+        background-color: #8BC34A;
+    }
+    &_bg-color-default {
+        background-color: #fff;
+    }
+
+
     &__time {
         font-size: 72px;
         font-weight: bold;
