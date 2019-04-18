@@ -28,7 +28,7 @@ export class PomidorkaTimerComponent extends Component {
         this.$stopTimer      = this.$pomidorkaTimer.querySelector('.js-btn-end')
 
         this.$pomidorkaTime.innerHTML = this.time
- 
+
         // Get block POMIDORKA LIST
         this.$pomidorkaList = document.querySelector('.pomidorka-list')
         // Get block POMIDORKA CONFIG FORM
@@ -113,8 +113,8 @@ function clickStopHandler() {
     resetBlockTimer.call(this)
 }
 function tickPomidorka() {
-    let time_list = this.$pomidorkaTime.innerHTML.split(':')
     
+    let time_list = this.$pomidorkaTime.innerHTML.split(':')
     
     let min = time_list[0]
     let sec = time_list[1]
@@ -125,7 +125,7 @@ function tickPomidorka() {
             if (!this.isBreak) {
                 this.$pomidorkaTimer.classList.add('pomidorka-timer_bg-color-break')     
                 addValueToElement(`${this.break}`, this.$pomidorkaTime)  
-                this.$pomidorkaTimer.querySelector('.break').classList.remove('js-hide')         
+                showElement(this.$pomidorkaTimer.querySelector('.break'))       
                 this.isBreak = true
                 return
             }
@@ -144,6 +144,9 @@ function tickPomidorka() {
     if (sec < 10) { sec = "0" + sec }
 
     addValueToElement(`${min}:${sec}`, this.$pomidorkaTime)
+    
+    const asideTimer = document.querySelector('.js-aside-position').querySelector('.pomidorka-timer__time')
+    addValueToElement(`${min}:${sec}`, asideTimer)
 }
 function enabledFormControls(formOject) {
     Object.keys(formOject.controls).forEach((control) => {
@@ -181,5 +184,5 @@ function resetBlockTimer() {
     if (this.$pomidorkaTimer.classList.contains('pomidorka-timer_bg-color-break')) {
         this.$pomidorkaTimer.classList.remove('pomidorka-timer_bg-color-break')
     }
-    this.$pomidorkaTimer.querySelector('.break').classList.add('js-hide') 
+    hideElement(this.$pomidorkaTimer.querySelector('.break')) 
 }
