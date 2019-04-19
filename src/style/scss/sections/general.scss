@@ -27,3 +27,12 @@ body {
 .control-invalid {
     border: 2px solid #E8485A;
 }
+
+table {
+    border-collapse: collapse;
+}
+  
+table, th, td {
+    border: 2px solid #E8485A;
+    padding: 5px;
+}

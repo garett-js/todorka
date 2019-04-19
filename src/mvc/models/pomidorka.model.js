@@ -29,6 +29,22 @@ class PomidorkaModel {
             console.error(error);
         }
     }
+
+    // async Update(key, pomidorka) {
+    //     try {
+            
+    //     } catch (error) {
+            
+    //     }
+    // }
+
+    // async Delete(key) {
+    //     try {
+            
+    //     } catch (error) {
+            
+    //     }
+    // }
 }
 
 async function useRequest(request) {

@@ -53,6 +53,7 @@ export class PomidorkaTimerComponent extends Component {
             this.startEventListining()
         }
         this.renderList(pomidorkaController)
+
     }
 
     async renderList(controller) {
@@ -78,8 +79,9 @@ async function createFormHandler(event) {
         const formData = {
             ...this.formCreate.value()
         }
-        this.$pomidorkaList.insertAdjacentHTML('afterbegin', `<li>Количество ${formData.count} | ${formData.pomidorkatitle}</li>`)
+        //this.$pomidorkaList.insertAdjacentHTML('afterbegin', `<li>Количество ${formData.count} | ${formData.pomidorkatitle}</li>`)
         await pomidorkaController.create(formData)
+        this.renderList(pomidorkaController)
     }
 }
 function configFormtHandler(event) {
