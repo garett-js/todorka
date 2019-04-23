@@ -1,7 +1,7 @@
-import { Component }           from '../js_core/component'
+import { Component }           from '../core/component'
 import { pomidorkaController } from '../mvc/controllers/pomidorka.controller'
-import { Validators }          from '../js_core/validators'
-import { Form }                from '../js_core/form'
+import { Validators }          from '../core/validators'
+import { Form }                from '../core/form'
 
 export class PomidorkaTimerComponent extends Component {
     constructor(id) {

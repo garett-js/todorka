@@ -1,32 +1,22 @@
-// section import js
-import { NavigationComponent }     from './js_components/navigation.component'
-import { PomidorkaTimerComponent } from './js_components/pomidorka.component'
-import { PlansComponent }          from './js_components/plans.component'
+import NavigationComponent from './components/navigation.component/'
+import PomidorkaAppComponent from './components/pomidorka-app.component/'
 
-// section import style
-// import './style/css/index.css'
 import './style/scss/index.scss'
 
-const nav = new NavigationComponent('.app-menu')
-console.log(nav)
-
+const nav = new NavigationComponent('app-menu')
 
 nav.registerTabs([
     {
         name : 'pomidorka',
-        component : PomidorkaTimerComponent.create('.pomidorka-space')
+        component : new PomidorkaAppComponent('pomidorka-space')
     },
-    {
-        name : 'plans',
-        component: PlansComponent.create('.plans-space')
-    },
+    // {
+    //     name : 'plans',
+    //     component: PlansComponent.create('plans-space')
+    // },
 ])
-
 // Entry Component
 showEntryComponent('pomidorka')
-
-console.log('App Go!');
-
 // helpers
 function showEntryComponent(name) {
     nav.tabs.find( e => e.name === name).component.show()

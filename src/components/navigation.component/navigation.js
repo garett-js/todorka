@@ -1,6 +1,6 @@
-import { Component } from "../js_core/component";
+import { Component } from "../../core/component";
 
-export class NavigationComponent extends Component {
+export default class NavigationComponent extends Component {
     constructor(id) {
         super(id)
         this.tabs = []

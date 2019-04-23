@@ -1,4 +1,4 @@
-import { TransormSerive } from '../../../js_services/transform.service'
+import { TransormSerive } from '../../../services/transform.service'
 
 export function pomidorkaIndex(dataObj = {}) {
     const data = TransormSerive.firebaseObjToArray(dataObj).reverse()

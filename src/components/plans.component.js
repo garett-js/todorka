@@ -1,4 +1,4 @@
-import { Component } from "../js_core/component";
+import { Component } from "../core/component";
 
 export class PlansComponent extends Component {
     constructor(id) {

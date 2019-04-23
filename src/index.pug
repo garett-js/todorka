@@ -17,10 +17,10 @@ html(lang='ru')
 					include templates/navigation
 
 				section.main__workspace
-					.inner-section.pomidorka-space
+					.inner-section.pomidorka-space#pomidorka-space
 						.row
-							include templates/pomidorka-space/pomidorka-timer
-							include templates/pomidorka-space/pomidorka-config
+							include components/pomidorka-timer.component/pomidorka-timer
+							include components/pomidorka-config-form.component/pomidorka-config-form
 							include templates/pomidorka-space/pomidorka-create
 					.inner-section.plans-space.js-hide
 						include templates/plans-space/plans
