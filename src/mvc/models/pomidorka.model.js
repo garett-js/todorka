@@ -30,21 +30,28 @@ class PomidorkaModel {
         }
     }
 
-    // async Update(key, pomidorka) {
-    //     try {
-            
-    //     } catch (error) {
-            
-    //     }
-    // }
+    async Update(pomidorka, key) {
+        try {
+            const request = new Request(`${this.config.databaseURL}/pomidorkos/${key}.json`, {
+                method: 'put',
+                body: JSON.stringify(pomidorka)
+            })
+            return useRequest(request)
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
-    // async Delete(key) {
-    //     try {
-            
-    //     } catch (error) {
-            
-    //     }
-    // }
+    async Delete(key) {
+        try {
+            const request = new Request(`${this.config.databaseURL}/pomidorkos/${key}.json`, {
+                method: 'delete'
+            })
+            return useRequest(request)
+        } catch (error) {
+            console.error(error);
+        }
+    }
 }
 
 async function useRequest(request) {

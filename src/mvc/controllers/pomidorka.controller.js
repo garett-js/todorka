@@ -23,6 +23,14 @@ class PomidorkaController {
     async create(data) {
         await Pomidorka.Store(data)
     }
+
+    async update(data, key) {
+        await Pomidorka.Update(data, key)
+    }
+
+    async delete(key) {
+        await Pomidorka.Delete(key)
+    }
 }
 
 function view(nameview, data) {

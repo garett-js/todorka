@@ -80,6 +80,8 @@ async function createFormHandler(event) {
             ...this.formCreate.value()
         }
         //this.$pomidorkaList.insertAdjacentHTML('afterbegin', `<li>Количество ${formData.count} | ${formData.pomidorkatitle}</li>`)
+        console.log(formData);
+        
         await pomidorkaController.create(formData)
         this.renderList(pomidorkaController)
     }
