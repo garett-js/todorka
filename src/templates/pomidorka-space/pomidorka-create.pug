@@ -1,5 +1,5 @@
 // БЛОК ФОРМА ДОБАВИТЬ ПОМИДОРКУ
-form.block-content.pomidorka-create-form(method='post')
+form#pomidorka-create-form.block-content.pomidorka-create-form
     h2.pomidorka-create-form__header Добавить помидорку
     .form-control
         label.pomidorka-create-form__label
@@ -12,8 +12,8 @@ form.block-content.pomidorka-create-form(method='post')
     button.btn.pomidorka-create-form__btn-add(type='submit') Тык
 // БЛОК СПИСОК ПОМИДОРОК
 //- ul.block-content.pomidorka-list
-div.block-content
-    table.pomidorka-list
+div.block-content#pomidorka-list
+    table.pomidorka-table
 
 div.block-content.test-content
     h2 Тестовый полигон

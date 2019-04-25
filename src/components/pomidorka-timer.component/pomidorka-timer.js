@@ -35,13 +35,14 @@ export default class PomidorkaTimerComponent extends Component {
         this.$startTimer     = this.$el.querySelector('.js-btn-start')
         this.$pauseTimer     = this.$el.querySelector('.js-btn-pause')
         this.$stopTimer      = this.$el.querySelector('.js-btn-end')
+    }
 
+    onShow() {
         if (!this.started) {
             this.startEventListining()
         }
+        this.config.show()
     }
-
-    onShow() {}
 
     startEventListining() {
         this.started = true

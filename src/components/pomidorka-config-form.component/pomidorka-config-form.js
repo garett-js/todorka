@@ -18,11 +18,12 @@ export default class PomidorkaConfigFormComponent extends Component {
             fulltime: [Validators.required, Validators.maxLength(2), Validators.minLength(1)],
             breaktime: [Validators.required],
             longbreaktime: [Validators.required]
-        })
-        this.startEventListining()
+        })       
     }
 
-    onShow() {}
+    onShow() {
+        this.startEventListining()
+    }
 
     startEventListining() {       
         this.$el.addEventListener('change', configFormHandler.bind(this))
