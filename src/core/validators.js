@@ -18,6 +18,10 @@ export class Validators {
             return (!result) ? {isValid: result, msg: `Максимальная длина ${length} `} : { isValid: true }
         }
     }
+
+    static positiveOnly(value = '') {
+        return (value.trim() < 0) ? {isValid: false, msg: 'Время не может быть отрицательным'} : {isValid: true} 
+    }
 }
     // if (event.target.value.length > 2 || event.target.value > 60) {
     //     alert('Не больше 60 минут')

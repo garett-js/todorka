@@ -19,3 +19,13 @@ export const visibilityHandler = (toHideElement, toShowElement) => {
 }
 
 export const addValueToElement = (value, el) => el.innerHTML = value
+
+
+export const enabledElement = (el) => {
+    el.removeAttribute('disabled')
+    el.classList.remove('disabled')
+}
+export const disabledElement = (el) => {
+    el.setAttribute('disabled', 'disabled')
+    el.classList.add('disabled')
+}

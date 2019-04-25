@@ -15,9 +15,9 @@ export default class PomidorkaConfigFormComponent extends Component {
 
     init() {
         this.formConfig = Form.Create(this.$el, {
-            fulltime: [Validators.required, Validators.maxLength(2), Validators.minLength(1)],
-            breaktime: [Validators.required],
-            longbreaktime: [Validators.required]
+            fulltime: [Validators.required, Validators.maxLength(2), Validators.minLength(1), Validators.positiveOnly],
+            breaktime: [Validators.required, Validators.maxLength(2), Validators.minLength(1), Validators.positiveOnly],
+            longbreaktime: [Validators.required, Validators.maxLength(2), Validators.minLength(1), Validators.positiveOnly]
         })       
     }
 

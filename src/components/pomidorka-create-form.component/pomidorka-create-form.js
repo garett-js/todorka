@@ -2,6 +2,9 @@ import { Component } from '../../core/component'
 import { Validators } from '../../core/validators'
 import { Form } from '../../core/form'
 import { pomidorkaController } from '../../mvc/controllers/pomidorka.controller'
+import { enabledElement, disabledElement } from  '../../libs/help-functions'
+
+import './pomidorka-create-form.scss'
 
 export default class PomidorkaCreateFormComponent extends Component {
     constructor(id, data = {}) {
@@ -30,7 +33,8 @@ async function createFormHandler(event) {
     if (this.formCreate.isValid()) {
         const formData = {
             ...this.formCreate.value()
-        }      
+        }              
+
         await pomidorkaController.create(formData)
         this.data.show()
     }
