@@ -1,0 +1,22 @@
+// БЛОК СПИСОК ПОМИДОРОК
+div.block-content.pomidorka-list#pomidorka-list
+    p Первая помидорка в списке улетает в таймер
+    hr
+    .cssload-loader#loader
+        .cssload-inner.cssload-one
+        .cssload-inner.cssload-two
+        .cssload-inner.cssload-three
+    table.pomidorka-table
+
+    //- div.pomidorka-list__edit.js-hide
+    form#pomidorka-edit-form.pomidorka-list__edit.js-hide
+        p Редактировать
+        .form-control
+            label.pomidorka-list__label
+                input.ppomidorka-list__input-text(type='text', name='editpomidorkatitle')
+        .form-control
+            label.pomidorka-list__label
+                input.ppomidorka-list__input-text(type='text', name='key', disabled)
+        hr
+        button.btn.pomidorka-create-form__btn-add(type='submit') Тык
+        a.pomidorka-list__edit-close Закрыть

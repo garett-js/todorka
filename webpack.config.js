@@ -50,12 +50,10 @@ module.exports = {
             // Правило как будет грузится файл css
             {
                 test: /\.css$/,
-                //  use: ['style-loader', 'css-loader'],
                 use: [MiniCssExtractPlugin.loader, 'css-loader']
             },
             {
                 test: /\.scss$/,
-                //  use: ['style-loader', 'css-loader'],
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             },
             // Правило как будет грузится babel
@@ -79,7 +77,7 @@ module.exports = {
                         options: {
                             mozjpeg: {
                                 progressive: true,
-                                quality: 70
+                                quality: 90
                             }
                         }
                     }

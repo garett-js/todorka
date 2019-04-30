@@ -20,6 +20,10 @@ export default class PomidorkaListComponent extends Component {
     }
     startEventListining() {
         this.$el.addEventListener('click', deleteItemHandler.bind(this))
+        this.$el.addEventListener('click', editItemHandler.bind(this))
+        document.querySelector('.pomidorka-list__edit-close').addEventListener('click', () => {
+            document.querySelector('.pomidorka-list__edit').classList.add('js-hide')
+        })
     }
 
     async RenderList() {      
@@ -37,5 +41,16 @@ async function deleteItemHandler(event) {
         this.loader.show() 
         await this.RenderList()
         this.loader.hide()
+    }
+}
+
+function editItemHandler(event) {
+    if (event.target.classList.contains('js-list-item-edit')) {
+        document.querySelector('.pomidorka-list__edit').classList.remove('js-hide')
+
+        const target = event.target.closest('tr')
+        const editForm = document.getElementById('pomidorka-edit-form')   
+        editForm.elements["key"].value = `${target.dataset.key}`
+        editForm.elements["editpomidorkatitle"].value = `${target.firstElementChild.innerHTML}`
     }
 }

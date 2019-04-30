@@ -14,15 +14,20 @@ html(lang='ru')
 			main.main
 				aside.main__aside
 					include templates/pomidorka-timer-aside
-					include templates/navigation
+					include components/navigation.component/navigation
 
 				section.main__workspace
 					.inner-section.pomidorka-space#pomidorka-space
-						.row
-							include components/pomidorka-timer.component/pomidorka-timer
-							include components/pomidorka-config-form.component/pomidorka-config-form
-							include templates/pomidorka-space/pomidorka-create
-					.inner-section.plans-space.js-hide
-						include templates/plans-space/plans
+						include components/pomidorka-app.component/pomidorka-app
+					.inner-section.plans-space.js-hide#plans-space
+						include components/plans-app.component/plans-app
+					.inner-section.blog-space.js-hide#blog-space
+						include components/blog-app.component/blog-app
+					.inner-section.chart-space.js-hide#chart-space
+						include components/chart-app.component/chart-app
+					.inner-section.config-space.js-hide#config-space
+						include components/config-app.component/config-app
+					.inner-section.bugs-space.js-hide#bugs-space
+						include components/bugs-app.component/bugs-app
 			include templates/footer
 

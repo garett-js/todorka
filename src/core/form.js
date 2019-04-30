@@ -10,6 +10,7 @@ export class Form {
 
     value() {
         const value = {}
+        
         Object.keys(this.controls).forEach( control => {
             // Обращаться к объекту по ключу через точку нельзя только так []
             // Тоже самое с формой
@@ -69,9 +70,14 @@ function setError($form, $control, message) {
 }
 
 function clearError($form, $control) {
-    $control.classList.remove('control-invalid')
 
-    if ($control.nextElementSibling) {      
-        $control.closest('label').removeChild($control.nextElementSibling)
+    if ($control) {
+        $control.classList.remove('control-invalid')
+
+        if ($control.nextElementSibling) {      
+            $control.closest('label').removeChild($control.nextElementSibling)
+        }
     }
+
+    return
 }

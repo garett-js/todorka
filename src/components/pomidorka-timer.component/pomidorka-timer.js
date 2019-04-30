@@ -1,5 +1,6 @@
 import { Component } from '../../core/component'
 import { enabledFormControls, disabledFormControls, hideElement, showElement, visibilityHandler ,addValueToElement} from '../../libs/help-functions'
+import { Pomidorka } from '../../mvc/models/pomidorka.model'
 
 export default class PomidorkaTimerComponent extends Component {
     constructor(id, comp) {
@@ -8,6 +9,8 @@ export default class PomidorkaTimerComponent extends Component {
         this.time      = `00:05`
         this.break     = `00:05`
         this.longBreak = `00:05`
+
+        this.defaultTitle = "[ Помидорушка ]"
 
         if (document.getElementById('pomidorka-config-form')) {
             this.config =  new comp('pomidorka-config-form', {
@@ -25,9 +28,10 @@ export default class PomidorkaTimerComponent extends Component {
         }
         
         this.$pomidorkaTime.innerHTML = this.config.time
+        this.$pomidorkaTitle.innerHTML = this.defaultTitle 
     }
 
-    init() {
+    async init() {
         this.id_timer = null
         // Get block POMIDORKA TIMER       
         this.$pomidorkaTime  = this.$el.querySelector('.pomidorka-timer__time')
@@ -35,16 +39,17 @@ export default class PomidorkaTimerComponent extends Component {
         this.$startTimer     = this.$el.querySelector('.js-btn-start')
         this.$pauseTimer     = this.$el.querySelector('.js-btn-pause')
         this.$stopTimer      = this.$el.querySelector('.js-btn-end')
+
+        if (!this.started) {
+            this.startEventListining()
+        }  
     }
 
     onShow() {
-        if (!this.started) {
-            this.startEventListining()
-        }
         this.config.show()
     }
 
-    startEventListining() {
+    async startEventListining() {
         this.started = true
         this.$startTimer.addEventListener('click', clickStartHandler.bind(this))
         this.$pauseTimer.addEventListener('click', clickPauseHandler.bind(this))
@@ -52,23 +57,45 @@ export default class PomidorkaTimerComponent extends Component {
     }
 }
 
-function clickStartHandler(event) {
+async function clickStartHandler(event) {
+    if (!this.isWasPause) {   
+        this.listElement = document.querySelector('.pomidorka-table').firstElementChild.firstElementChild
+        this.listElementId = this.listElement.dataset.key
+        this.listElementTitle = this.listElement.firstElementChild
+        // this.listElementCount = this.listElementTitle.nextElementSibling.innerHTML
+        this.$pomidorkaTitle.innerHTML = this.listElementTitle.innerHTML
+    }
+
+    hideElement(this.$el.querySelector('.pause-note'))
     visibilityHandler(event.target, this.$pauseTimer)
     this.id_timer = setInterval(tickPomidorka.bind(this), 1000)
     disabledFormControls(this.config.formConfig)
+
+    this.isWasPause = false
 }
 function clickPauseHandler(event) {
+    this.isWasPause = true
     visibilityHandler(event.target, this.$startTimer)
     clearInterval(this.id_timer)
+    showElement(this.$el.querySelector('.pause-note'))
 }
 function clickStopHandler() {
+    this.isWasPause = false
+
+    this.listElement = null
+    this.listElementId = ''
+    this.listElementTitle = ''
+
+    hideElement(this.$el.querySelector('.pause-note'))
+
     visibilityHandler(this.$pauseTimer, this.$startTimer)
     clearInterval(this.id_timer)
     addValueToElement(`${this.config.time}`, this.$pomidorkaTime)
     resetBlockTimer.call(this)
     enabledFormControls(this.config.formConfig)
 }
-function tickPomidorka() {
+async function tickPomidorka() {
+
     let time_list = this.$pomidorkaTime.innerHTML.split(':')
     
     let min = time_list[0]
@@ -88,6 +115,18 @@ function tickPomidorka() {
             visibilityHandler(this.$pauseTimer, this.$startTimer)
             clearInterval(this.id_timer)
             enabledFormControls(this.config.formConfig)
+
+            this.$pomidorkaTitle.innerHTML = this.defaultTitle
+
+            await Pomidorka.Delete(`${this.listElementId}`)
+
+            Array.from( document.querySelector('.pomidorka-table')
+                                .querySelectorAll('.js-table-row')).forEach( (e) => {
+                if (e.dataset.key === this.listElementId) {
+                    e.remove()
+                }
+            })
+
             return
         }
         min--

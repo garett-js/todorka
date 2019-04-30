@@ -26,7 +26,6 @@
         text-align: center;
     }
 }
-
 .app-footer {
     flex: 0 0 20px;
     /* border: 2px solid tomato; */
@@ -38,7 +37,6 @@
     display: flex;
     /* border: 2px solid tomato; */
     box-sizing: border-box;
-
     &__aside {
         flex: 0 0 240px;
         position: relative;
@@ -58,8 +56,6 @@
         padding: 40px;
     }
 }
-
-
 /* общий стиль для подложки у блоков */
 .block-content {
     position: relative;
@@ -69,4 +65,5 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
     min-width: 300px;
+    box-sizing: border-box;
 }

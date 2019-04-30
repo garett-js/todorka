@@ -60,14 +60,14 @@
 
         border: 2px solid #fff;
 
-        &_red   { background-color: $red-color; }
-        &_green { background-color: $green-color; }
-        &_blue  { background-color: $blue-color; }
+        &_red   { background-color: #E8485A; }
+        &_green { background-color: #19b90b; }
+        &_blue  { background-color: #2D9CDB; }
     }
 
     &__count-indicator {
         border-radius: 10px;
-        background-color: $blue-color;
+        background-color: #2D9CDB;
         width: 3em;
         text-align: center;
         margin: 0 5px;

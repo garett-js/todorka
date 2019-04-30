@@ -15,13 +15,13 @@ export default class PomidorkaCreateFormComponent extends Component {
     init() {
         this.formCreate = Form.Create(this.$el, {
             pomidorkatitle: [Validators.required],
-            count: [Validators.required]
+            // count: [Validators.required]
         })
-    }
 
-    onShow() {
         this.startEventListining()
     }
+
+    onShow() { }
 
     startEventListining() {
         this.$el.addEventListener('submit', createFormHandler.bind(this))

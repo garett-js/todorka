@@ -3,13 +3,16 @@ form.block-content.pomidorka-config-form#pomidorka-config-form
     h2.pomidorka-config-form__header Настройки таймера
     .form-control
         label.pomidorka-config-form__label
-            | Время помидорки
+            | Время помидорки (мин)
+            br
             input.pomidorka-config-form__input-text.js-config-form-fulltime(type='number', name='fulltime', value='25')
     .form-control
         label.pomidorka-config-form__label
-            | Время перерыва
+            | Перерыв (мин)
+            br
             input.pomidorka-config-form__input-text.js-config-form-breaktime(type='number', name='breaktime', value='5')
     .form-control
         label.pomidorka-config-form__label
-            | Время большого перерыва
+            | Большой перерыв (мин)
+            br
             input.pomidorka-config-form__input-text.js-config-form-longbreaktime(type='number', name='longbreaktime', value='15')
