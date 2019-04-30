@@ -14,10 +14,9 @@ export default class PomidorkaListComponent extends Component {
     }
 
     async onShow() {   
-        this.loader.show() 
         await this.RenderList()
-        this.loader.hide()
     }
+
     startEventListining() {
         this.$el.addEventListener('click', deleteItemHandler.bind(this))
         this.$el.addEventListener('click', editItemHandler.bind(this))
@@ -27,9 +26,15 @@ export default class PomidorkaListComponent extends Component {
     }
 
     async RenderList() {      
-        this.$table.innerHTML = ''
+        this.loader.show() 
+        this.$el.querySelector('.pomidorka-table').classList.add('opac')
+
         const html = await pomidorkaController.index()
+        this.$table.innerHTML = ''
         this.$table.insertAdjacentHTML('afterbegin', html.join(' '))
+
+        this.$el.querySelector('.pomidorka-table').classList.remove('opac')
+        this.loader.hide()
     }
 }
 
@@ -38,9 +43,7 @@ async function deleteItemHandler(event) {
         event.preventDefault()
         const target = event.target.closest('tr')
         await pomidorkaController.delete(`${target.dataset.key}`)
-        this.loader.show() 
         await this.RenderList()
-        this.loader.hide()
     }
 }
 

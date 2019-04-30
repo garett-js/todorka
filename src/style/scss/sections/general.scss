@@ -69,10 +69,10 @@ table, th, td {
 
 // generate loader
 .cssload-loader {
-	position: relative;
-	left: calc(50% - 32px);
-	width: 64px;
-	height: 64px;
+	position: absolute;
+	left: calc(50% - 45px);
+	width: 90px;
+	height: 90px;
 	border-radius: 50%;
 		-o-border-radius: 50%;
 		-ms-border-radius: 50%;
@@ -103,7 +103,7 @@ table, th, td {
 		-ms-animation: cssload-rotate-one 0.8s linear infinite;
 		-webkit-animation: cssload-rotate-one 0.8s linear infinite;
 		-moz-animation: cssload-rotate-one 0.8s linear infinite;
-	border-bottom: 3px solid rgb(222,33,33);
+	border-bottom: 10px solid rgb(222,33,33);
 }
 .cssload-inner.cssload-two {
 	right: 0%;
@@ -113,7 +113,7 @@ table, th, td {
 		-ms-animation: cssload-rotate-two 0.8s linear infinite;
 		-webkit-animation: cssload-rotate-two 0.8s linear infinite;
 		-moz-animation: cssload-rotate-two 0.8s linear infinite;
-	border-right: 3px solid rgb(100,175,232);
+	border-right: 10px solid rgb(100,175,232);
 }
 .cssload-inner.cssload-three {
 	right: 0%;
@@ -123,7 +123,7 @@ table, th, td {
 		-ms-animation: cssload-rotate-three 0.8s linear infinite;
 		-webkit-animation: cssload-rotate-three 0.8s linear infinite;
 		-moz-animation: cssload-rotate-three 0.8s linear infinite;
-	border-top: 3px solid rgb(0,0,0);
+	border-top: 10px solid rgb(0,0,0);
 }
 
 @keyframes cssload-rotate-one {
