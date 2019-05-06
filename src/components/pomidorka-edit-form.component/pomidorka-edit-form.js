@@ -16,8 +16,8 @@ export default class PomidorkaEditFormComponent extends Component {
         console.log('PomidorkaEditFormComponent :: Create')
         
         this.formEdit = Form.Create(this.$el, {
-            editpomidorkatitle: [],
-            key: []
+            editpomidorkatitle: [Validators.required, Validators.maxLength(127)],
+            key: [Validators.required]
         })
 
         this.startEventListining()

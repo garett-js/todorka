@@ -8,15 +8,4 @@ div.block-content.pomidorka-list#pomidorka-list
         .cssload-inner.cssload-three
     table.pomidorka-table
 
-    //- div.pomidorka-list__edit.js-hide
-    form#pomidorka-edit-form.pomidorka-list__edit.js-hide
-        p Редактировать
-        .form-control
-            label.pomidorka-list__label
-                input.ppomidorka-list__input-text(type='text', name='editpomidorkatitle')
-        .form-control
-            label.pomidorka-list__label
-                input.ppomidorka-list__input-text(type='text', name='key', disabled)
-        hr
-        button.btn.pomidorka-create-form__btn-add(type='submit') Тык
-        a.pomidorka-list__edit-close Закрыть
+    include ../pomidorka-edit-form.component/pomidorka-edit-form

@@ -10,7 +10,7 @@ export default class PomidorkaTimerComponent extends Component {
         this.break     = `00:05`
         this.longBreak = `00:05`
 
-        this.defaultTitle = "[ Помидорушка ]"
+        this.defaultTitle = "[ ... ]"
 
         if (document.getElementById('pomidorka-config-form')) {
             this.config =  new comp('pomidorka-config-form', {
@@ -39,6 +39,10 @@ export default class PomidorkaTimerComponent extends Component {
         this.$startTimer     = this.$el.querySelector('.js-btn-start')
         this.$pauseTimer     = this.$el.querySelector('.js-btn-pause')
         this.$stopTimer      = this.$el.querySelector('.js-btn-end')
+
+        this.sound = require('../../sounds/pomodorko_sound.mp3')
+        this.notification = new Audio(this.sound)
+        
 
         if (!this.started) {
             this.startEventListining()
@@ -91,6 +95,7 @@ function clickStopHandler() {
     visibilityHandler(this.$pauseTimer, this.$startTimer)
     clearInterval(this.id_timer)
     addValueToElement(`${this.config.time}`, this.$pomidorkaTime)
+    addValueToElement(this.defaultTitle, this.$pomidorkaTitle)
     resetBlockTimer.call(this)
     enabledFormControls(this.config.formConfig)
 }
@@ -106,8 +111,19 @@ async function tickPomidorka() {
             if (!this.isBreak) {
                 this.$el.classList.add('pomidorka-timer_bg-color-break')     
                 addValueToElement(`${this.config.break}`, this.$pomidorkaTime)  
-                showElement(this.$el.querySelector('.break'))       
+                showElement(this.$el.querySelector('.break'))     
+
                 this.isBreak = true
+                this.notification.play()
+
+                await Pomidorka.Delete(`${this.listElementId}`)
+                Array.from( document.querySelector('.pomidorka-table')
+                .querySelectorAll('.js-table-row')).forEach( (e) => {
+                    if (e.dataset.key === this.listElementId) {
+                        e.remove()
+                    }
+                })
+
                 return
             }
             resetBlockTimer.call(this) 
@@ -117,16 +133,6 @@ async function tickPomidorka() {
             enabledFormControls(this.config.formConfig)
 
             this.$pomidorkaTitle.innerHTML = this.defaultTitle
-
-            await Pomidorka.Delete(`${this.listElementId}`)
-
-            Array.from( document.querySelector('.pomidorka-table')
-                                .querySelectorAll('.js-table-row')).forEach( (e) => {
-                if (e.dataset.key === this.listElementId) {
-                    e.remove()
-                }
-            })
-
             return
         }
         min--

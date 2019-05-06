@@ -92,6 +92,10 @@ module.exports = {
                         name: 'fonts/[name][hash].[ext]'
                     }
                 }
+            },
+            {
+                test: /\.mp3$/,
+                loader: 'file-loader'
             }
         ]
     }

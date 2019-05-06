@@ -9,12 +9,12 @@ export class Form {
     }
 
     value() {
-        const value = {}
-        
+        const value = {}  
         Object.keys(this.controls).forEach( control => {
             // Обращаться к объекту по ключу через точку нельзя только так []
             // Тоже самое с формой
-            value[control] = this.form[control].value
+            let valueString = escapeHtml(this.form[control].value)
+            value[control] = valueString
         })
         return value
     }
@@ -78,6 +78,14 @@ function clearError($form, $control) {
             $control.closest('label').removeChild($control.nextElementSibling)
         }
     }
-
     return
+}
+
+function escapeHtml(text) {
+    return text.replace(/[\"&'\/<>]/g, function (a) {
+        return {
+            '"': '&quot;', '&': '&amp;', "'": '&#39;',
+            '/': '&#47;',  '<': '&lt;',  '>': '&gt;'
+        }[a]
+    })
 }

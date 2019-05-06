@@ -4,3 +4,25 @@
 .state_enabled {
     pointer-events: auto;
 }
+
+.pomidorka-list__edit {
+    position: absolute;
+    background-color: #2D9CDB;
+    padding: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    min-width: 300px;
+    color: #fff;
+    top: 35px;
+    right: 100px;
+}
+
+.pomidorka-list__edit-close {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.opac {
+    opacity: 0.4;
+}

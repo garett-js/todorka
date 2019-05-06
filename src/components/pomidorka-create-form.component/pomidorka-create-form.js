@@ -14,7 +14,7 @@ export default class PomidorkaCreateFormComponent extends Component {
 
     init() {
         this.formCreate = Form.Create(this.$el, {
-            pomidorkatitle: [Validators.required],
+            pomidorkatitle: [Validators.required, Validators.maxLength(127)],
             // count: [Validators.required]
         })
 
@@ -33,8 +33,10 @@ async function createFormHandler(event) {
     if (this.formCreate.isValid()) {
         const formData = {
             ...this.formCreate.value()
-        }              
-
+        }     
+        
+        event.target.pomidorkatitle.value = ''
+        
         await pomidorkaController.create(formData)
         this.data.show()
     }
