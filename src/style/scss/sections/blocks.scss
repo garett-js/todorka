@@ -25,6 +25,13 @@
         color: #fff;  
         text-align: center;
     }
+
+    &__top-panel {
+        // font-family: 'Berkshire Swash', cursive;
+        font-size: 14px;
+        padding-top: 26px;
+        padding-left: 50px;
+    }
 }
 .app-footer {
     flex: 0 0 20px;
