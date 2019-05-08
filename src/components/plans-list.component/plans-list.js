@@ -12,15 +12,23 @@ export default class PlansListComponent extends Component {
         this.startEventListining()   
     }
 
-    async onShow() {   
+    async onShow() {
         await this.RenderList()
+        const plan = await plansController.show('0')
+
+        this.$plan = this.$el.querySelector('.plan-show')
+
+        this.$plan.classList.remove('js-hide')
+        this.$plan.innerHTML = ''
+        this.$plan.insertAdjacentHTML('afterbegin', plan)
+        
     }
 
     startEventListining() {
     }
 
-    async RenderList() {      
-        this.loader.show() 
+    async RenderList() {
+        this.loader.show()
 
         const html = await plansController.index()
 

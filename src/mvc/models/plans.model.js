@@ -18,6 +18,17 @@ class PlansModel {
         }
     }
 
+    async GetById(key) {
+        try {
+            const request = new Request(`${this.config.databaseURL}/plans/${key}.json`, {
+                method: 'get'
+            })
+            return useRequest(request)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 //     async Store(pomidorka) {
 //         try {
 //             const request = new Request(`${this.config.databaseURL}/pomidorkos.json`, {
