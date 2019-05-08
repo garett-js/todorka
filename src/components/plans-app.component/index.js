@@ -1,2 +1,2 @@
-import PlansComponent from './plans-app.component'
+import PlansComponent from './plans-app'
 export default PlansComponent

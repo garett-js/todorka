@@ -6,22 +6,32 @@ export function planShow(dataObj = {}) {
 
     if (!data) {
         return [`
-            <div class="block-content">
+            <div>
                 <h2>А планов то и нет ... </h2>
             </div>`]
     }
     const html =
           `
-            <div class="block-content">
-                <h3><a href="#">${dataObj.title}</a></h3>
+            <div">
+                <h3>${dataObj.title}</h3>
                 <p>${dataObj.description}</p>
+                <table>
                 ${
-                    data.reverse().map(v => {
-                        return `<li>${v.titlep}</li>`
-                    })
+                    data.map((v,i) => {
+                        return `
+                        <tr data-key=${v.id}>
+                            <td class="count_plan">${++i}</td>
+                            <td class="title_plan">${v.titlep}</td>
+                            <td class="button_plan"><button class="js-btn-add-pomidorka">К помидоркам</button></td>
+                        </tr>`
+                    }).join(' ')
                 }
+                </table>
                 <p>${dataObj.date}</p>
-            </div>`
+
+                <button class="btn js-btn-close">Закрыть</button>
+            </div>
+            `
 
     return html
 }

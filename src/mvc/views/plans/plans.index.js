@@ -12,8 +12,8 @@ export function plansIndex(dataObj = {}) {
     }
     const html = data.reverse().map(v => {
           return `
-            <div class="block-content">
-                <h3><a href="#">${v.title}</a></h3>
+            <div data-key=${v.id} class="block-content">
+                <h3><a href="#" class="js-plan-card">${v.title}</a></h3>
                 <p>${v.description}</p>
                 <p>${v.date}</p>
             </div>`

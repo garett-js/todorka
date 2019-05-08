@@ -2,10 +2,11 @@ import { Component } from '../../core/component'
 import { plansController } from '../../mvc/controllers/plans.controller'
 
 export default class PlansListComponent extends Component {
-    constructor(id, { loader }) {
+    constructor(id, cpt, { loader }) {
         super(id)    
         this.count = 0
         this.loader = loader
+        this.cpt = cpt
     }
 
     init() { 
@@ -13,27 +14,30 @@ export default class PlansListComponent extends Component {
     }
 
     async onShow() {
-        await this.RenderList()
-        const plan = await plansController.show('0')
-
-        this.$plan = this.$el.querySelector('.plan-show')
-
-        this.$plan.classList.remove('js-hide')
-        this.$plan.innerHTML = ''
-        this.$plan.insertAdjacentHTML('afterbegin', plan)
-        
+        await this.RenderList() 
     }
 
     startEventListining() {
+        this.$el.addEventListener('click', clickPlanCardHandler.bind(this))
     }
 
     async RenderList() {
-        this.loader.show()
-
-        const html = await plansController.index()
-
+        this.$el.innerHTML = '' 
+        const html = await plansController.index()        
         this.$el.insertAdjacentHTML('beforeend', html.join(' '))
+        document.querySelector('.app-menu__count-indicator-for-plans').innerHTML = html.length
+    }
+}
 
-        this.loader.hide()
+async function clickPlanCardHandler(event) {
+    if ( event.target.classList.contains('js-plan-card') ) {
+        event.preventDefault()
+        const target = event.target.closest('div')
+        const plan = await plansController.show(`${target.dataset.key}`) 
+
+        this.cpt.show()
+        
+        this.cpt.$el.innerHTML = ''
+        this.cpt.$el.insertAdjacentHTML('afterbegin', plan)
     }
 }

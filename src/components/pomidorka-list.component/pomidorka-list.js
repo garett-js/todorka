@@ -35,6 +35,8 @@ export default class PomidorkaListComponent extends Component {
 
         this.$el.querySelector('.pomidorka-table').classList.remove('opac')
         this.loader.hide()
+
+        document.querySelector('.app-menu__count-indicator-for-pomidorkos').innerHTML = html.length
     }
 }
 
