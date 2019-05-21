@@ -19,7 +19,7 @@ function  tabClickHandler(event) {
     event.preventDefault()
 
     let target = event.target
-    target = target.closest('li') // клик по вложенным элементам кинуть на родителя 
+    target = target.closest('li') // клик по вложенным элементам кинуть на родителя
 
     if (target && target.classList.contains('js-tab')) {
 
@@ -32,8 +32,6 @@ function  tabClickHandler(event) {
 
         const activeTab = this.tabs.find(e => e.name === target.dataset.name)
         this.tabs.forEach(t => t.component.hide())
-
-        // console.log("Активная ссылка:", activeTab)
 
         activeTab.component.show()
     }

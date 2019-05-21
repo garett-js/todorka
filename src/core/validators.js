@@ -20,6 +20,6 @@ export class Validators {
     }
 
     static positiveOnly(value = '') {
-        return (value.trim() < 0) ? {isValid: false, msg: 'Время не может быть отрицательным'} : {isValid: true} 
+        return (value.trim() < 0) ? {isValid: false, msg: 'Время не может быть отрицательным'} : {isValid: true}
     }
 }

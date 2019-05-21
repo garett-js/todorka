@@ -8,7 +8,7 @@ import './pomidorka-create-form.scss'
 
 export default class PomidorkaCreateFormComponent extends Component {
     constructor(id, data = {}) {
-        super(id)    
+        super(id)
         this.data = data
     }
 
@@ -17,7 +17,6 @@ export default class PomidorkaCreateFormComponent extends Component {
             pomidorkatitle: [Validators.required, Validators.maxLength(127)],
             // count: [Validators.required]
         })
-
         this.startEventListining()
     }
 
@@ -33,12 +32,9 @@ async function createFormHandler(event) {
     if (this.formCreate.isValid()) {
         const formData = {
             ...this.formCreate.value()
-        }     
-        
+        }
         event.target.pomidorkatitle.value = ''
-        
         await pomidorkaController.create(formData)
         this.data.show()
     }
 }
-

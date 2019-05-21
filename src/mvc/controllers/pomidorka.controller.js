@@ -3,13 +3,10 @@ import { pomidorkaIndex } from '../views/pomidorka/pomidorka.index'
 
 class PomidorkaController {
     constructor() {
-        this.hello = "PomidorkaController.Constructor"
         this.init()
     }
 
-    init() {
-        console.log(this.hello)
-    }
+    init() { }
 
     static make() {
         return new PomidorkaController()

@@ -15,15 +15,11 @@ export default class PomidorkaAppComponent extends Component {
         const pomidorkaTimerComponent = new PomidorkaTimerComponent('pomidorka-timer', PomidorkaConfigFormComponent)
         const pomidorkaListComponent = new PomidorkaListComponent('pomidorka-list', { loader })
         const pomidorkaCreateFormComponent = new PomidorkaCreateFormComponent('pomidorka-create-form', pomidorkaListComponent)
-       
         new PomidorkaEditFormComponent('pomidorka-edit-form', pomidorkaListComponent)
-       
         pomidorkaTimerComponent.show()
         pomidorkaListComponent.show()
         pomidorkaCreateFormComponent.show()
-
         this.list = pomidorkaListComponent
-        
     }
 
     onShow() {

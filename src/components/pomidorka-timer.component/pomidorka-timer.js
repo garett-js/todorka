@@ -5,7 +5,7 @@ import { Pomidorka } from '../../mvc/models/pomidorka.model'
 export default class PomidorkaTimerComponent extends Component {
     constructor(id, comp) {
         super(id)
-       
+
         this.time      = `00:05`
         this.break     = `00:05`
         this.longBreak = `00:05`
@@ -26,14 +26,15 @@ export default class PomidorkaTimerComponent extends Component {
                 longBreak : this.longBreak
             }
         }
-        
+
         this.$pomidorkaTime.innerHTML = this.config.time
-        this.$pomidorkaTitle.innerHTML = this.defaultTitle 
+        this.$pomidorkaTitle.innerHTML = this.defaultTitle
+
+        this.countForLongBreak = 0
     }
 
     async init() {
         this.id_timer = null
-        // Get block POMIDORKA TIMER       
         this.$pomidorkaTime  = this.$el.querySelector('.pomidorka-timer__time')
         this.$pomidorkaTitle = this.$el.querySelector('.pomidorka-timer__title')
         this.$startTimer     = this.$el.querySelector('.js-btn-start')
@@ -42,11 +43,10 @@ export default class PomidorkaTimerComponent extends Component {
 
         this.sound = require('../../sounds/pomodorko_sound.mp3')
         this.notification = new Audio(this.sound)
-        
 
         if (!this.started) {
             this.startEventListining()
-        }  
+        }
     }
 
     onShow() {
@@ -62,11 +62,10 @@ export default class PomidorkaTimerComponent extends Component {
 }
 
 async function clickStartHandler(event) {
-    if (!this.isWasPause) {   
+    if (!this.isWasPause) {
         this.listElement = document.querySelector('.pomidorka-table').firstElementChild.firstElementChild
         this.listElementId = this.listElement.dataset.key
         this.listElementTitle = this.listElement.firstElementChild
-        // this.listElementCount = this.listElementTitle.nextElementSibling.innerHTML
         this.$pomidorkaTitle.innerHTML = this.listElementTitle.innerHTML
     }
 
@@ -102,16 +101,15 @@ function clickStopHandler() {
 async function tickPomidorka() {
 
     let time_list = this.$pomidorkaTime.innerHTML.split(':')
-    
     let min = time_list[0]
     let sec = time_list[1]
 
     if (sec == 0) {
         if (min == 0) {
             if (!this.isBreak) {
-                this.$el.classList.add('pomidorka-timer_bg-color-break')     
-                addValueToElement(`${this.config.break}`, this.$pomidorkaTime)  
-                showElement(this.$el.querySelector('.break'))     
+                this.$el.classList.add('pomidorka-timer_bg-color-break')
+                addValueToElement(`${this.config.break}`, this.$pomidorkaTime)
+                showElement(this.$el.querySelector('.break'))
 
                 this.isBreak = true
                 this.notification.play()
@@ -123,11 +121,16 @@ async function tickPomidorka() {
                         e.remove()
                     }
                 })
-
                 return
             }
-            resetBlockTimer.call(this) 
-            addValueToElement(`${this.config.time}`, this.$pomidorkaTime)
+            resetBlockTimer.call(this)
+
+            if (++this.countForLongBreak == 4) {
+                addValueToElement(`${this.config.longBreak}`, this.$pomidorkaTime)
+            } else {
+                addValueToElement(`${this.config.time}`, this.$pomidorkaTime)
+            }
+
             visibilityHandler(this.$pauseTimer, this.$startTimer)
             clearInterval(this.id_timer)
             enabledFormControls(this.config.formConfig)
@@ -144,10 +147,10 @@ async function tickPomidorka() {
     addValueToElement(`${min}:${sec}`, this.$pomidorkaTime)
 }
 
-function resetBlockTimer() {  
+function resetBlockTimer() {
     this.isBreak = false
     if (this.$el.classList.contains('pomidorka-timer_bg-color-break')) {
         this.$el.classList.remove('pomidorka-timer_bg-color-break')
     }
-    hideElement(this.$el.querySelector('.break')) 
+    hideElement(this.$el.querySelector('.break'))
 }

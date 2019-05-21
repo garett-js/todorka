@@ -9,7 +9,7 @@ export class Form {
     }
 
     value() {
-        const value = {}  
+        const value = {}
         Object.keys(this.controls).forEach( control => {
             // Обращаться к объекту по ключу через точку нельзя только так []
             // Тоже самое с формой
@@ -49,12 +49,8 @@ export class Form {
                     invalidMessages.push(validObj.msg)
                 }
             })
-
-            console.log(invalidMessages)
             const msg = invalidMessages.join('<br>')
-
             !isValid ?  setError(this.form, this.form[control], msg) : clearError(this.form, this.form[control])
-
             isFormValid = isFormValid && isValid
          })
         return isFormValid
@@ -62,7 +58,7 @@ export class Form {
 }
 
 function setError($form, $control, message) {
-    clearError($form, $control)  
+    clearError($form, $control)
     $control.value = ''
     const error = `<p class="validation-error">${message}</p>`
     $control.classList.add('control-invalid')
@@ -70,11 +66,9 @@ function setError($form, $control, message) {
 }
 
 function clearError($form, $control) {
-
     if ($control) {
         $control.classList.remove('control-invalid')
-
-        if ($control.nextElementSibling) {      
+        if ($control.nextElementSibling) {
             $control.closest('label').removeChild($control.nextElementSibling)
         }
     }

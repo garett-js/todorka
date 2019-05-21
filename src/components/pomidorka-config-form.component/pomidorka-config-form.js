@@ -4,7 +4,7 @@ import { Form } from '../../core/form'
 
 export default class PomidorkaConfigFormComponent extends Component {
     constructor(id,  data = {}) {
-        super(id)    
+        super(id)
 
         this.data = data
 
@@ -18,14 +18,14 @@ export default class PomidorkaConfigFormComponent extends Component {
             fulltime: [Validators.required, Validators.maxLength(2), Validators.minLength(1), Validators.positiveOnly],
             breaktime: [Validators.required, Validators.maxLength(2), Validators.minLength(1), Validators.positiveOnly],
             longbreaktime: [Validators.required, Validators.maxLength(2), Validators.minLength(1), Validators.positiveOnly]
-        })       
+        })
     }
 
     onShow() {
         this.startEventListining()
     }
 
-    startEventListining() {       
+    startEventListining() {
         this.$el.addEventListener('change', configFormHandler.bind(this))
     }
 }
@@ -38,7 +38,7 @@ function configFormHandler(event) {
         const formData = {
             ...this.formConfig.value()
         }
-        this.data.pomidorkaTime.textContent = `${formData.fulltime}:00`  
+        this.data.pomidorkaTime.textContent = `${formData.fulltime}:00`
         this.time      = `${formData.fulltime}:00`
         this.break     = `${formData.breaktime}:00`
         this.longBreak = `${formData.longbreaktime}:00`

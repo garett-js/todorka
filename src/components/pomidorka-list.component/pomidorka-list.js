@@ -3,17 +3,17 @@ import { pomidorkaController } from '../../mvc/controllers/pomidorka.controller'
 
 export default class PomidorkaListComponent extends Component {
     constructor(id, { loader }) {
-        super(id)    
+        super(id)
         this.count = 0
         this.loader = loader
     }
 
     init() {
-        this.$table = document.querySelector('.pomidorka-table')   
-        this.startEventListining()   
+        this.$table = document.querySelector('.pomidorka-table')
+        this.startEventListining()
     }
 
-    async onShow() {   
+    async onShow() {
         await this.RenderList()
     }
 
@@ -25,8 +25,8 @@ export default class PomidorkaListComponent extends Component {
         })
     }
 
-    async RenderList() {      
-        this.loader.show() 
+    async RenderList() {
+        this.loader.show()
         this.$el.querySelector('.pomidorka-table').classList.add('opac')
 
         const html = await pomidorkaController.index()
@@ -54,7 +54,7 @@ function editItemHandler(event) {
         document.querySelector('.pomidorka-list__edit').classList.remove('js-hide')
 
         const target = event.target.closest('tr')
-        const editForm = document.getElementById('pomidorka-edit-form')   
+        const editForm = document.getElementById('pomidorka-edit-form')
         editForm.elements["key"].value = `${target.dataset.key}`
         editForm.elements["editpomidorkatitle"].value = `${target.firstElementChild.innerHTML}`
     }

@@ -16,7 +16,7 @@ export default class PlansComponent extends Component {
     }
 
     init() {
-        const loader = new LoaderComponent('loader')          
+        const loader = new LoaderComponent('loader')
         const plansShowComponent = new PlansShowComponent('plan-show')
         const plansListComponent = new PlansListComponent('list-plans', plansShowComponent, { loader })
 
@@ -30,5 +30,3 @@ export default class PlansComponent extends Component {
         this.list.show()
     }
 }
-
-
